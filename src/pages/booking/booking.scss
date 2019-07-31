@@ -1,0 +1,82 @@
+page-booking {
+  .header{
+    width: 100%;
+    height: 10vh;
+    background: #F2C777;
+    position: relative;
+    border-radius: 0px 0px 0px 50px;
+    h3{
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: white;
+      font-size: 10vw;
+    }
+  }
+  .form{
+    height: 80vh;
+    width: 100%;
+    .personal{
+      display: flex;
+      width: 97vw;
+    }
+    .line{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      padding: 40px 0px;
+      .circle{
+        width: 20px;
+        height: 20px;
+        border: solid 2px #F2C777;
+        border-radius: 200px;
+        margin: 0px 5px;
+      }
+      .li{
+        height: 2px;
+        width: 43%;
+        background: #F2C777;
+      }
+    }
+    .booking{
+      display: flex;
+      width: 96vw;
+      margin: auto;
+      div{
+        width: 96%;
+      }
+    }
+    .payment{
+      width: 96vw;
+      margin: auto;
+      .labell{
+        border-bottom: solid 2px #080C26;
+        margin: 20px 0px;
+        p{
+          background: #080C26;
+          width: 25vw;
+          margin: 0;
+          color: #F2C777;
+          padding: 10px;
+          border-radius: 0px 50px 0px 0px;
+        }
+      }
+    }
+    .butom{
+      text-align: center;
+      .buutton{
+      margin: auto;
+      text-align: center;
+      width:60vw;
+      padding: 10px 0px ;
+      font-size: 5vw;
+      background: #F2C777;
+      color: white;
+      border-radius: 0px 50px 0px 50px;
+    }
+    }
+
+  }
+}

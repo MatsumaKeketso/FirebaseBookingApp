@@ -1,0 +1,101 @@
+<ion-content>
+
+  <!-- THE HEADER -->
+  <div class="h">
+    <ion-item>
+      <div class="header">
+        <div class="details">
+          <h4>{{user}}</h4>
+          <h3>Viewing Hotel</h3>
+          <button *ngIf="!isAnonymous" ion-button large (click)="deleteHotel(hotelData.hotelName)">Remove Hotel</button>
+        </div>
+      </div>
+    </ion-item>
+  </div>
+  <!-- CONTAINS EVERYTHING -->
+  <div class="contain">
+    <!-- HOTEL DETAILS -->
+    <div class="hotelHeader">
+      <div class="header">
+        <div class="cont">
+            <div> <button ion-button clear color="light" large (click)="goBack()"><ion-icon name="arrow-back"></ion-icon></button>
+            </div>
+            <div>
+              <h1 *ngIf="hotelData.hotelName">{{hotelData.hotelName}}</h1>
+            </div>
+        </div>
+      </div>
+      <div class="desc">
+          <p *ngIf="hotelData.description">{{hotelData.description}}</p>
+       </div>
+      <div class="rating">
+        <div *ngFor="let n of stars">
+            <ion-icon name="star-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="contacts">
+        <div>
+           <p *ngIf="hotelData.location&&hotelData.contacts">{{hotelData.location}} | {{hotelData.contacts}} </p>
+        </div>
+      </div>
+    </div>
+    <!-- LINE DIVIDER -->
+    <div class="line">
+        <div class="linedash"></div>
+        <div class="circle"></div>
+        <div class="linedash"></div>
+      </div>
+    <!-- IMAGE OF THE HOTEL -->
+    <div class="hotelimage">
+      <img *ngIf="hotelData.image" src="{{hotelData.image}}" alt="">
+    </div>
+    <!-- LINE DIVIDER -->
+    <div class="line">
+      <div class="linedash"></div>
+      <div class="circle"></div>
+      <div class="linedash"></div>
+    </div>
+    <div class="roomhead">
+      <h3>Rooms & Suites</h3>
+    </div>
+    <!-- IMAGE -->
+    <ion-slides *ngIf="rooms">
+      <div *ngFor="let r of rooms">
+        <ion-slide >
+          <div class="roomsCard">
+            <div class="button">
+              <button (click)="toBooking(r)">Book Now</button>
+            </div>
+            <div clas s="roomImage">
+              <img src="{{r.roomimage}}" alt="">
+            </div>
+            <div class="roomDetails">
+              <h3>{{r.roomtype}}</h3>
+              <p id="desc">{{r.roomdescription}}</p>
+              <p id="roomFeat"><b>R{{r.roomrate}}/pn</b> | Occupancy: {{r.occupancy}} people</p>
+              <div class="icons" >
+                <div class="features" *ngFor="let f of r.features">{{f}}</div>
+              </div>
+            </div>
+          </div>
+        </ion-slide>
+      </div>
+    </ion-slides>
+    <!-- LINE DIVIDER -->
+    <div class="line">
+        <div class="linedash"></div>
+        <div class="circle"></div>
+        <div class="linedash"></div>
+      </div>
+      <div class="roomhead">
+        <h3>Services</h3>
+      </div>
+        <div class="servicesCard">
+          <div *ngIf="hotelData.services">
+              <div *ngFor="let s of hotelData.services" id="services" class="roomDetails">
+                  <h3>{{s}}</h3>
+                  </div>
+          </div>
+          </div>
+  </div>
+</ion-content>

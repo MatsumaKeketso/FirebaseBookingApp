@@ -1,0 +1,203 @@
+page-owner-view-hotel {
+  .h{
+    .item{
+      padding: 0px !important;
+      margin: 0px !important;
+      overflow: auto;
+      background: #080C26;
+      border-radius: 0px 0px 50px 0px;
+      border: none !important;
+      box-shadow: 0px 0px 10px #171717;
+      .header{
+        width: 100%;
+        height: 20%;
+        background: rgb(8, 12, 38);
+        color: white;
+        padding: 10px;
+        display: flex;
+        border-radius: 0px 0px 50px 0px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.185);
+        .details{
+          flex-basis: 80%;
+          p{
+            margin: 0;
+            margin-left: 5px;
+            padding: 5px;
+            color: rgb(255, 227, 200);
+          }
+          h3{
+            margin-left: 10px;
+            text-transform: uppercase;
+            color: rgb(255, 255, 255);
+          }
+        }
+        .image{
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          overflow: hidden;
+          box-shadow:
+          0 0 0 2px hsla(39, 83%, 71%, 0.315),
+          0 0 0px 4px hsla(39, 83%, 71%, 0.253);
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+  *{
+    padding: 0;
+    margin: 0;
+  }
+  .contain{
+    padding: 0px 5px;
+    width: 100%;
+    .line{
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      margin: 10px 0px;
+      .linedash{
+        width: 40%;
+        height: 2px;
+        background: orange;
+      }
+      .circle{
+        margin: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 100px;
+        border: solid 2px orange;
+      }
+    }
+    .hotelHeader{
+      width: 100;
+      height: auto;
+      background: #592316;
+      color: white;
+      border-radius: 0px 50px 0px 50px;
+      overflow: hidden;
+      padding: 10px;
+      .header{
+        width: 100%;
+        .cont{
+          display: flex;
+          align-content: center;
+          justify-content: center;
+          align-content: center;
+          align-items: center;
+          div{
+            width: 50%;
+          }
+        }
+      }
+      .rating{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        div {
+          padding: 5px 10px
+        }
+      }
+      .contacts{
+        text-align: center;
+      }
+    }
+    .hotelimage{
+      width: 100%;
+      border-radius: 50px 0px 50px 0px;
+      overflow: hidden;
+    }
+    .roomhead{
+      text-align: center;
+      font-size: 50px;
+    }
+    .roomsCard{
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 50px 0px 50px 0px;
+      background: #F2C777;
+      color: #080C26;
+      #services{
+        text-align: left;
+        background: #080C26;
+        color: #F2C777;
+      }
+      .roomImage{
+        overflow: hidden;
+        border-radius: 0px 0px 50px 0px;
+      }
+      h3{
+        font-size: 30px;
+        padding: 10px 0px;
+      }
+      .roomDetails{
+        .icons{
+          display: flex;
+          flex-wrap: wrap;
+          align-content: center;
+          justify-content: center;
+          padding: 5px;
+          .features{
+            background: #080C26;
+          color: white;
+          border-radius: 5px;
+          margin: 1px;
+          padding: 2px;
+          }
+        }
+      }
+      #desc{
+        font-size: 3vw;
+      }
+
+      .button{
+        position: absolute;
+        top: 0;
+        left: auto;
+        right: auto;
+        button{
+          background: #D9A76A;
+          color: white;
+          padding: 5px 25px;
+          border-radius: 0px 0px 50px 50px;
+        }
+      }
+    }
+    .servicesCard{
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+
+      color: #080C26;
+      #services{
+        text-align: left;
+        background: #080C26;
+        color: #F2C777;
+        padding: 10px;
+        border-radius: 0px 0px 50px 0px;
+        margin: 5px 0px;
+    }
+    .button{
+      position: absolute;
+      top: 0;
+      right: 50px;
+      button{
+        background: #D9A76A;
+        color: white;
+        padding: 5px 25px;
+        border-radius: 0px 0px 50px 50px;
+      }
+
+    }
+  }
+}
+}

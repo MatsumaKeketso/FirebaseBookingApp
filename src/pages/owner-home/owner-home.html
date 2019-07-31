@@ -1,0 +1,61 @@
+<ion-content>
+
+    <div class="h">
+        <ion-item >
+            <div class="header">
+                <div class="details">
+                  <h3 *ngIf="userprofile.name">Hi {{userprofile.name}} {{userprofile.surname}}</h3>
+                  <h3 *ngIf="!userprofile.name">Hi New User</h3>
+                  <p>Hotels: {{hotelsNo}}</p>
+                </div>
+                <div *ngIf="userprofile.image" class="image" (click)="logout()">
+                    <img src="{{userprofile.image}}" alt="">
+                  </div>
+                <div *ngIf="!userprofile.image" class="image" (click)="logout()">
+                  <img src="../../assets/imgs/images/logo.PNG" alt="">
+                </div>
+              </div>
+        </ion-item>
+    </div>
+    <div class="empty" *ngIf="!info">
+      <button (click)="addHotel()">List Your Place</button>
+    </div>
+    <div class="container" *ngIf="info">
+      <div class="button">
+          <button (click)="addHotel()">List Your Place</button>
+      </div>
+      <div class="details">
+        <div *ngFor="let n of hotels">
+          <div class="card">
+            <div class="image">
+              <img src="{{n.images}}">
+            </div>
+            <div class="detail">
+              <div class="header">
+                <h4>{{n.hotelName}}</h4>
+              </div>
+              <div class="desc">
+                <p>{{n.description}}</p>
+              </div>
+              <div class="contact">
+                <p>{{n.contact}}</p>
+                <p>{{n.location}}</p>
+              </div>
+              <div class="rating">
+                <div >
+                  <ion-icon *ngFor="let n of stars" name="star"></ion-icon>
+                </div>
+              </div>
+              <div class="view">
+                <!-- <button ion-button clear large style="background: none !important;"><ion-icon name="heart" color="primary"></ion-icon></button> -->
+               <button (click)="viewHotel(n)">View</button>
+              </div>
+              <div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</ion-content>

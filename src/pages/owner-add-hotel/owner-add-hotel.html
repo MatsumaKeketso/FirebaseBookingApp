@@ -1,0 +1,67 @@
+<ion-content >
+  <!-- HEADER -->
+  <div class="h">
+      <ion-item >
+          <div class="header">
+              <div class="details">
+                <h1>LIST HOTEL</h1>
+              </div>
+              <!-- <div class="image">
+               <img src="../../assets/imgs/images/Blank-Silhouette.jpg" alt="">
+              </div>-->
+            </div>
+      </ion-item>
+  </div>
+  <!-- CONTENT -->
+<div class="container">
+  <!-- HOTEL NAME -->
+  <ion-item>
+    <ion-label floating color="beachSand">Hotel Name</ion-label>
+    <ion-input type="text" [(ngModel)]="hotel.hotelName"></ion-input>
+  </ion-item>
+  <!-- IMAGE UPLOADS -->
+  <ion-item>
+    <button ion-button full *ngIf="!uniqueimage" (click)="selectImage()" large>Select an Image</button>
+    <div *ngIf="uniqueimage">
+        <ion-slides >
+            <ion-slide >
+                <div class="image">
+                  <div class="imageD">
+                      <img src="{{uniqueimage}}">
+                  </div>
+                  <div class="dele" (click)="deleteImage()">
+                      <ion-icon name="trash" color="danger" ></ion-icon>
+                  </div>
+                </div>
+                <!-- <button ion-button color="success" (click)="uploadImage()">Upload Image</button> -->
+            </ion-slide>
+          </ion-slides>
+    </div>
+  </ion-item>
+  <!-- DESCRIPTION -->
+  <ion-item >
+    <ion-label floating >Description of Hotel</ion-label>
+    <ion-textarea [(ngModel)]="hotel.description"></ion-textarea>
+  </ion-item>
+  <!-- SERVICES SELECTION-->
+  <ion-item>
+    <ion-label floating>What services will you offer?</ion-label>
+    <ion-select multiple [(ngModel)]="hotel.services">
+          <ion-option *ngFor="let n of services; let i = index">{{n}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <!-- LOCATION -->
+  <ion-item>
+    <ion-label floating >Where is it located</ion-label>
+    <ion-input type="text" [(ngModel)]="hotel.location"></ion-input>
+  </ion-item>
+  <!-- CONTACTS -->
+  <ion-item>
+    <ion-label floating >Your contacts</ion-label>
+    <ion-input type="tel"  [(ngModel)]="hotel.contacts"></ion-input>
+  </ion-item>
+
+<button class="add" (click)="addHotel()">Add Rooms</button>
+</div>
+
+</ion-content>

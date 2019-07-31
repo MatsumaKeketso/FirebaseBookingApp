@@ -1,0 +1,34 @@
+<ion-content>
+
+    <div class="h">
+        <ion-item >
+            <div class="header">
+                <div class="details">
+                  <h2 *ngIf="userprofile.name">{{userprofile.name}} {{userprofile.surname}}</h2>
+                  <h3 *ngIf="!userprofile.name">{{userprofile.email}}</h3>
+                  <button ion-button clear color="light" large (click)="back()">Back</button>
+                </div>
+                <div *ngIf="user" class="image" (click)="logout()">
+                  <img src="{{userprofile.image}}" alt="">
+                </div>
+              </div>
+        </ion-item>
+    </div>
+    <div class="contain">
+      <div *ngIf="!data" style="width: 100vw; text-align:center; ">
+        <h1 style="color: black;">You havent made any Reservations.</h1>
+      </div>
+      <div *ngIf="data">
+          <div class="card" *ngFor="let n of bookings">
+              <h1>{{n.name}} {{n.surname}} <div class="fbutton">
+                  <button ion-fab (click)="cancelRes(n)" color="danger"><ion-icon name="trash"></ion-icon></button>
+              </div> </h1>
+              <p> Booked a {{n.roomname}} at {{n.hotelname}}</p>
+              <p> Check In Date: {{n.checkin | date}} </p>
+              <p> Checkout Date: {{n.checkout | date}} </p>
+              <p>Contacts: {{n.phone}} | {{n.email}}</p>
+            </div>
+      </div>
+
+    </div>
+</ion-content>

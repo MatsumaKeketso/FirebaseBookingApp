@@ -1,0 +1,27 @@
+<ion-content>
+  <div class="header">
+    <div class="title">
+      <h1>Travel Hotels</h1>
+    </div>
+  </div>
+  <div class="form">
+    <div>
+        <div *ngIf="error">
+            <p id="error">{{error}}</p>
+          </div>
+     <div class="inputs">
+       <input type="text" [(ngModel)]="user.email" placeholder="Email">
+       <input type="text" [(ngModel)]="user.password" placeholder="Password">
+       </div>
+       <div class="link">
+         <button (click)="toLogin()">Already have an account?</button>
+       </div>
+        <div class="lButton">
+          <button id="login" (click)="register()">Register</button>
+        </div>
+    </div>
+   </div>
+
+     <div class="text">
+     </div>
+</ion-content>

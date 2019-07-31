@@ -26,9 +26,28 @@
         .catch(err => console.error('Error', err));
     }
   </script>-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
 
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBwtkTHszYaYREVSoNzPs99kYUYohcgXZQ",
+    authDomain: "hotelbookingapp-a10ee.firebaseapp.com",
+    databaseURL: "https://hotelbookingapp-a10ee.firebaseio.com",
+    projectId: "hotelbookingapp-a10ee",
+    storageBucket: "hotelbookingapp-a10ee.appspot.com",
+    messagingSenderId: "971218909732",
+    appId: "1:971218909732:web:bfd9400037537df0"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
   <link href="build/main.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
@@ -44,6 +63,14 @@
 
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src *;
+  style-src 'self' 'unsafe-inline';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  img-src 'self' data: https://s-media-cache-ak0.pinimg.com;
+  script-src 'self' https://maps.googleapis.com;" />
 
 </body>
 </html>

@@ -1,0 +1,112 @@
+page-owner-add-rooms {
+  *{
+    padding: 0;
+    margin: 0;
+  }
+.h{
+  .item{
+    padding: 0px !important;
+    margin: 0px !important;
+    overflow: auto;
+    background: #080C26;
+    border-radius: 0px 0px 50px 0px;
+    border: none !important;
+    box-shadow: 0px 0px 10px #171717;
+    .header{
+      width: 100%;
+      height: 20%;
+      background: rgb(8, 12, 38);
+      color: white;
+      padding: 10px;
+      display: flex;
+      border-radius: 0px 0px 50px 0px;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.185);
+      .details{
+        flex-basis: 80%;
+        p{
+          margin: 0;
+          margin-left: 5px;
+          padding: 5px;
+          color: rgb(255, 227, 200);
+        }
+        h3{
+          margin-left: 10px;
+          text-transform: uppercase;
+          color: #F2C777;
+        }
+      }
+      .image{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow:
+        0 0 0 2px hsla(39, 83%, 71%, 0.315),
+        0 0 0px 4px hsla(39, 83%, 71%, 0.253);
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+.container{
+  .item{
+    width: 70vw;
+    margin: auto;
+    padding: 0 !important;
+    background: none;
+    .image{
+      position: relative;
+      width: 100%;
+        height: 30vh;
+      display: flex;
+      .imageD{
+        flex-basis: 90%;
+        border-radius: 0px 0px 0px 20px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px #1717174f;
+        margin: 10px 0px 10px 10px;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .dele{
+        box-shadow: 0px 0px 10px #1717174f;
+        margin: 10px 10px 10px 0px;
+        border-radius: 0px 20px 0px 0px;
+        background: rgb(255, 199, 199);
+        margin: 0px 5px;
+        display: grid;
+        align-items: center;
+        padding: 5px;
+      }
+    }
+  }
+  .buttons{
+    text-align: center;
+    padding: 20px 0px;
+    .save{
+      background: #F2C777;
+      margin: 10px auto;
+      padding: 10px 0px;
+      width: 30%;
+      border-radius: 0px 50px 0px 50px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.185);
+    }
+    .done{
+      background: #F2C777;
+      margin: 10px auto;
+      padding: 10px 0px;
+      width: 30%;
+      border-radius: 50px 0px 50px 0px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.185);
+    }
+  }
+}
+}

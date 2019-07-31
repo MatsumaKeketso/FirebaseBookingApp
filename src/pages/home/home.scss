@@ -1,3 +1,73 @@
 page-home {
+  .content{
+    background: linear-gradient(rgba(0, 0, 0, 0.438)),url(../../assets/imgs/images/darkbglogohome.PNG);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center bottom;
+  }
+  .welcome{
+    width: 100%;
+    height: 35vh;
+    text-align: center;
+    background: rgb(217, 167, 106);
+    color: white;
+    border-bottom-left-radius: 50px;
+    font-weight: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px #17171777;
+    .header{
+      box-shadow: 0px 0px 10px #1717175d;
+      width: 100%;
+      height: 90%;
+      background: rgb(242, 199, 119);
+      display: grid;
+      align-items: center;
+      border-bottom-left-radius: 50px;
+      h1, h3{
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  .details{
+    color: white;
+    width: 96%;
+    margin: auto;
+    text-align: center;
+    padding: 5% 0%;
+
+  }
+  .buttons{
+    padding: 50px 0px;
+    text-align: center;
+    button{
+      margin: auto;
+    }
+    #login{
+      background: #F2C777;
+      padding: 10px 0px;
+      width: 60vw;
+      border-radius: 0px 50px 0px 50px;
+      margin: 5px auto;
+      text-align: center;
+      font-size:4vw;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .line2{
+      height: 2px;
+      background: #F2C777;
+      width: 50%;
+      box-shadow: 0px 0px 10px rgba(242, 199, 119, 0.61);
+    }
+    .line1{
+      height: 2px;
+      background: #F2C777;
+      width: 50%;
+      float: right;
+      box-shadow: 0px 0px 10px rgba(242, 199, 119, 0.61);
+    }
+  }
 
 }
