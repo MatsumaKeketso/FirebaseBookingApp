@@ -1,0 +1,71 @@
+<ion-content>
+    <div class="head">
+        <div>
+            <p>Final Step to your Comforts!</p>
+            <h5>Almost done! just fill in the *required info</h5>
+        </div>
+    </div>
+
+
+  <div class="slid">
+      <ion-item>
+          <ion-label floating>*Payment method</ion-label>
+          <ion-select [(ngModel)]="payment.method" multiple="false" >
+            <ion-option >Visa</ion-option>
+            <ion-option >Master Card</ion-option>
+            <ion-option >American Express</ion-option>
+            <ion-option >Diners Club</ion-option>
+            <ion-option >UnionPay credit card</ion-option>
+          </ion-select>
+        </ion-item>
+            <div class="cardowner">
+              <div class="left">
+                <ion-item>
+                  <ion-label floating >*Name</ion-label>
+                  <ion-input type="text" [(ngModel)]="payment.name"></ion-input>
+                </ion-item>
+              </div>
+              <div class="right">
+                <ion-item>
+                  <ion-label floating >*Surname</ion-label>
+                  <ion-input type="text" [(ngModel)]="payment.surname"></ion-input>
+                </ion-item>
+              </div>
+            </div>
+            <div class="carddetails">
+              <div class="left">
+                <ion-item>
+                  <ion-label floating>*Card Number</ion-label>
+                  <ion-input type="tel" [(ngModel)]="payment.cardnumber"></ion-input>
+                </ion-item>
+
+
+            </div>
+            <div class="right">
+                <ion-item>
+                  <ion-label floating>*CVV</ion-label>
+                  <ion-input type="tel" [(ngModel)]="payment.cvv"></ion-input>
+                </ion-item>
+              </div>
+          </div>
+          <ion-item>
+              <ion-label floating>*Expiration Date</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY"  [(ngModel)]="payment.expiration"></ion-datetime>
+            </ion-item>
+  </div>
+  <div class="res">
+    <div>
+        <button (click)="confirm()">Reserve</button>
+      <div class="print">
+          <h2>Fine Print</h2>
+        <div class="details">
+            <p>Please note that the credit card used to book the accommodation will need to be presented upon check-in as well as identification in the form or an ID book or passport.</p>
+
+                <p>Guests are required to show a photo identification and credit card upon check-in. Please note that all Special Requests are subject to availability and additional charges may apply.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

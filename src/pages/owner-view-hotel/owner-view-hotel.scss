@@ -1,52 +1,65 @@
 page-owner-view-hotel {
   .h{
-    .item{
-      padding: 0px !important;
-      margin: 0px !important;
-      overflow: auto;
-      background: #080C26;
-      border-radius: 0px 0px 50px 0px;
-      border: none !important;
-      box-shadow: 0px 0px 10px #171717;
-      .header{
+    position: fixed;
+    background: rgb(113, 68, 150);
+    height: 8vh;
+    right: 0;
+    left: 0;
+    display: flex;
+    color: white;
+    border-radius: 0px 0px 10px 10px;
+    z-index: 10;
+    box-shadow: 0px 2px 8px #17171791;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.082);
+    div{
+      width: 50%;
+    }
+    .hotelname{
+      flex-basis: 70%;
+      display: grid;
+      align-content: center;
+      padding: 10px;
+      p{
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .profile{
+      display: grid;
+      align-content: center;
+      height: 100%;
+      div{
         width: 100%;
-        height: 20%;
-        background: rgb(8, 12, 38);
-        color: white;
-        padding: 10px;
         display: flex;
-        border-radius: 0px 0px 50px 0px;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.185);
-        .details{
-          flex-basis: 80%;
+        height: 100%;
+        .icon{
+          text-align: center;
+          width: 20%;
+          display: grid;
+          align-content: center;
           p{
             margin: 0;
-            margin-left: 5px;
-            padding: 5px;
-            color: rgb(255, 227, 200);
-          }
-          h3{
-            margin-left: 10px;
-            text-transform: uppercase;
-            color: rgb(255, 255, 255);
+            padding: 0;
+            text-align: center;
           }
         }
-        .image{
-          width: 70px;
-          height: 70px;
-          border-radius: 50%;
-          overflow: hidden;
-          box-shadow:
-          0 0 0 2px hsla(39, 83%, 71%, 0.315),
-          0 0 0px 4px hsla(39, 83%, 71%, 0.253);
-          img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .moree{
+
+          width: 80%;
+          p{
+            margin: 0;
+            padding: 0;
           }
+        }
+        div{
+          width: 50%;
         }
       }
     }
+  }
+  .space{
+    height: 8vh;
+    width: 100%;
   }
   *{
     padding: 0;
@@ -65,24 +78,26 @@ page-owner-view-hotel {
       align-items: center;
       margin: 10px 0px;
       .linedash{
-        width: 40%;
+        width: 45%;
         height: 2px;
-        background: orange;
+        background: #717272;
       }
       .circle{
         margin: 5px;
         width: 10px;
         height: 10px;
         border-radius: 100px;
-        border: solid 2px orange;
+        border: solid 2px #717272;
       }
     }
     .hotelHeader{
       width: 100;
       height: auto;
-      background: #592316;
+      background: #323268;
       color: white;
-      border-radius: 0px 50px 0px 50px;
+      border-radius: 8px;
+      margin: 10px 0px;
+      box-shadow: 0px 0px 8px #1717178f;
       overflow: hidden;
       padding: 10px;
       .header{
@@ -95,6 +110,10 @@ page-owner-view-hotel {
           align-items: center;
           div{
             width: 50%;
+            h1{
+              margin: 0;
+              padding: 0;
+            }
           }
         }
       }
@@ -111,93 +130,45 @@ page-owner-view-hotel {
       }
     }
     .hotelimage{
+      height: 60vh;
       width: 100%;
-      border-radius: 50px 0px 50px 0px;
+      border-radius: 8px;
       overflow: hidden;
-    }
-    .roomhead{
-      text-align: center;
-      font-size: 50px;
-    }
-    .roomsCard{
       position: relative;
-      width: 100%;
-      overflow: hidden;
-      border-radius: 50px 0px 50px 0px;
-      background: #F2C777;
-      color: #080C26;
-      #services{
-        text-align: left;
-        background: #080C26;
-        color: #F2C777;
-      }
-      .roomImage{
-        overflow: hidden;
-        border-radius: 0px 0px 50px 0px;
-      }
-      h3{
-        font-size: 30px;
-        padding: 10px 0px;
-      }
-      .roomDetails{
-        .icons{
-          display: flex;
-          flex-wrap: wrap;
-          align-content: center;
-          justify-content: center;
-          padding: 5px;
-          .features{
-            background: #080C26;
-          color: white;
-          border-radius: 5px;
-          margin: 1px;
-          padding: 2px;
-          }
-        }
-      }
-      #desc{
-        font-size: 3vw;
-      }
-
-      .button{
+      .reserve{
         position: absolute;
-        top: 0;
-        left: auto;
-        right: auto;
-        button{
-          background: #D9A76A;
-          color: white;
-          padding: 5px 25px;
-          border-radius: 0px 0px 50px 50px;
-        }
+        top: 10px;
+        right: 10px;
+      }
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
-    .servicesCard{
-      position: relative;
+    h2{
       width: 100%;
-      overflow: hidden;
-
-      color: #080C26;
-      #services{
-        text-align: left;
-        background: #080C26;
-        color: #F2C777;
-        padding: 10px;
-        border-radius: 0px 0px 50px 0px;
-        margin: 5px 0px;
+      border-top: solid 2px gray;
+      border-bottom: solid 2px gray;
+      text-align: center;
+      padding: 20px 0px;
+      margin: 10px 0px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
-    .button{
-      position: absolute;
-      top: 0;
-      right: 50px;
-      button{
-        background: #D9A76A;
+    .features{
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      justify-content: center;
+      .feat{
+        background: #5657A4;
+        padding: 5px;
+        margin: 2px;;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px #8f8f8f;
         color: white;
-        padding: 5px 25px;
-        border-radius: 0px 0px 50px 50px;
       }
-
     }
-  }
 }
 }

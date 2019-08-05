@@ -6,7 +6,7 @@
     <h1>Create Profile</h1>
  <div *ngIf="profileImage" class="image">
    <div class="del" ><button fab-button clear (click)="reset()"><ion-icon clear clear name="trash"></ion-icon></button></div>
-    <img  src="{{profileImage}}">
+    <img  src="{{image}}">
  </div>
   <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
 
@@ -24,7 +24,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Phone Number</ion-label>
-      <ion-input type="tel" [(ngModel)]="userProfile.number"></ion-input>
+      <ion-input type="tel" [(ngModel)]="userProfile.phone"></ion-input>
     </ion-item>
         <button ion-button large clear full center (click)="createUser()">Create Profile</button>
 
@@ -41,7 +41,7 @@
            </div>
         </div>
         <div class="contact">
-          <div class="number"><p>{{displayProfile.number}}</p></div>
+          <div class="number"><p>{{displayProfile.phone}}</p></div>
           <div class="line"></div>
           <div class="email"><p>{{displayProfile.email}}</p></div>
         </div>

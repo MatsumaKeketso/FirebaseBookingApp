@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { OwnerHomePage } from "../owner-home/owner-home";
 import { RegisterOwnerPage } from '../register-owner/register-owner';
 import * as firebase from 'firebase';
@@ -15,56 +15,61 @@ export class LoginOwnerPage {
   firebase = firebase;
   db = firebase.firestore();
   user = {} as Login;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private userProv: UserProvider) {
-    this.login();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private userProv: UserProvider, public alertCtrl: AlertController) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginOwnerPage');
-
+    this.firebase.auth().onAuthStateChanged( user => {
+      if (user){
+        // send the user's data if they're still loggedin
+        this.userProv.setUser(user);
+        console.log('login user auth response: ', user);
+        // from user we can access the uid by : user.uid
+        this.navCtrl.setRoot(OwnerHomePage, user);
+      }
+    })
   }
   toRegister(){
     this.navCtrl.push(RegisterOwnerPage);
   }
   async login(){
-    const loading = this.loadingCtrl.create({
+    if (!this.user.email || !this.user.password){
+      this.alertCtrl.create({
+        message: 'Fields cannot be left empty.'
+      }).present();
+    } else {
+      const loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: 'Please Wait..'
     });
     loading.present();
-    this.firebase.auth().onAuthStateChanged( user => {
-      if (user){
-        // send the user's data if they're still loggedin
-        this.userProv.setUser(user);
-        loading.dismiss();
-        console.log('login user auth response: ', user);
-        // from user we can access the uid by : user.uid
-        this.navCtrl.setRoot(OwnerHomePage, user);
-      } else {
-          if(!this.user.email || !this.user.password){
-            loading.dismiss();
-          } else {
+      this.firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password).then(res => {
+        if (res.user.uid){
+          // send the user data to provider if they just signed in
+          // CHECK IF THE USER HAS PROFILE
+          this.db.collection('users').where('uid', '==', res.user.uid).get().then(snapshot => {
+            snapshot.forEach(doc => {
+              console.log(doc.data());
 
-            this.firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password).then(res => {
-              if (res.user.uid){
-                // send the user data to provider if they just signed in
-
-                this.userProv.setUser(res);
-                loading.dismiss();
-                console.log("Response from signin: ", res);
-
-                this.navCtrl.setRoot(OwnerHomePage, {userId: res.user});
-                console.log('Login user signin response: ', user);
-              }
-            }, err => {
-              console.log("Error: ", err);
-              this.error = err.message;
-              console.log('Owner user signin error: ', err);
-              loading.dismiss();
             })
-          }
-      }
-    })
+            loading.dismiss();
+          })
+          // this.userProv.setUser(res);
+          // loading.dismiss();
+          // console.log("Response from signin: ", res);
+
+          // this.navCtrl.setRoot(OwnerHomePage, {userId: res.user});
+          // console.log('Login user signin response: ', user);
+        }
+      }, err => {
+        console.log("Error: ", err);
+        this.error = err.message;
+        console.log('Owner user signin error: ', err);
+        loading.dismiss();
+      })
+    }
   }
   toHome(){
     this.navCtrl.setRoot(HomePage);

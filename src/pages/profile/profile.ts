@@ -22,7 +22,8 @@ export class ProfilePage {
     name: null,
     surname: null,
     email: null,
-    number: null
+    phone: null,
+    bio: null
   } as UserProfile
   // store the selected image for upload
   profileImage;
@@ -62,7 +63,7 @@ export class ProfilePage {
   }
   createUser(){
     // error statement if the fields are empty
-    if(!this.userProfile.name || !this.userProfile.surname || !this.userProfile.number){
+    if(!this.userProfile.name || !this.userProfile.surname || !this.userProfile.phone){
       this.toastCtrl.create({
         message: 'Do not leave fields empty. Email is optional',
         duration: 3000
@@ -133,7 +134,7 @@ export class ProfilePage {
     // create a reference to the collection of users...
     let users = this.db.collection('users');
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.userProfile.uid);
+    let query = users.where("uid", "==", this.userProv.getUser().uid);
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
@@ -156,6 +157,9 @@ export class ProfilePage {
       load.dismiss();
     })
   }
+  getBookins(){
+    
+  }
   reset(){
     this.profileImage = '';
   }
@@ -170,5 +174,6 @@ export interface UserProfile {
   name: string;
   surname: string;
   email:string;
-  number: number;
+  phone: any;
+  bio: string
 }

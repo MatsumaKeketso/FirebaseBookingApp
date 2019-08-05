@@ -1,0 +1,28 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OwnerHomePage } from '../owner-home/owner-home';
+
+/**
+ * Generated class for the ConfirmedPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-confirmed',
+  templateUrl: 'confirmed.html',
+})
+export class ConfirmedPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ConfirmedPage');
+  }
+  done(){
+    this.navCtrl.setRoot(OwnerHomePage);
+  }
+}

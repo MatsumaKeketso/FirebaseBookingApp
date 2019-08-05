@@ -1,10 +1,10 @@
 
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBwtkTHszYaYREVSoNzPs99kYUYohcgXZQ",
-  authDomain: "hotelbookingapp-a10ee.firebaseapp.com",
-  databaseURL: "https://hotelbookingapp-a10ee.firebaseio.com",
-  projectId: "hotelbookingapp-a10ee",
-  storageBucket: "hotelbookingapp-a10ee.appspot.com",
-  messagingSenderId: "971218909732",
-  appId: "1:971218909732:web:bfd9400037537df0"
+  apiKey: "AIzaSyBPfCCjbsdYbI5TLz-_rko4hx5-HuZmPR4",
+  authDomain: "hotel-cms-d3e5c.firebaseapp.com",
+  databaseURL: "https://hotel-cms-d3e5c.firebaseio.com",
+  projectId: "hotel-cms-d3e5c",
+  storageBucket: "hotel-cms-d3e5c.appspot.com",
+  messagingSenderId: "350660726268",
+  appId: "1:350660726268:web:2005f443f3f48aeb"
   }

@@ -2,20 +2,36 @@ page-booking {
   .header{
     width: 100%;
     height: 10vh;
-    background: #F2C777;
+    background: #323268;
     position: relative;
-    border-radius: 0px 0px 0px 50px;
-    h3{
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      color: white;
-      font-size: 10vw;
+    border-radius: 0px 0px 8px 8px;
+    display: flex;
+    .button{
+    }
+    div{
+      display: grid;
+      align-content: center;
+
+      h3{
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-size: 6vw;
+        font-family: 'Muli';
+      }
     }
   }
   .form{
     height: 80vh;
     width: 100%;
+    text-align: center;
+    p{
+      color: gray;
+      margin: 4vh 0vh;
+      font-size: 4vw;
+      font-family: 'Muli';
+    }
     .personal{
       display: flex;
       width: 97vw;
@@ -26,18 +42,18 @@ page-booking {
       justify-content: center;
       align-content: center;
       align-items: center;
-      padding: 40px 0px;
+      padding: 50px 0px;
       .circle{
         width: 20px;
         height: 20px;
-        border: solid 2px #F2C777;
+        border: solid 2px #717272;
         border-radius: 200px;
         margin: 0px 5px;
       }
       .li{
         height: 2px;
         width: 43%;
-        background: #F2C777;
+        background: #717272;
       }
     }
     .booking{
@@ -48,33 +64,23 @@ page-booking {
         width: 96%;
       }
     }
-    .payment{
-      width: 96vw;
-      margin: auto;
-      .labell{
-        border-bottom: solid 2px #080C26;
-        margin: 20px 0px;
-        p{
-          background: #080C26;
-          width: 25vw;
-          margin: 0;
-          color: #F2C777;
-          padding: 10px;
-          border-radius: 0px 50px 0px 0px;
-        }
-      }
-    }
     .butom{
       text-align: center;
       .buutton{
-      margin: auto;
-      text-align: center;
-      width:60vw;
-      padding: 10px 0px ;
-      font-size: 5vw;
-      background: #F2C777;
-      color: white;
-      border-radius: 0px 50px 0px 50px;
+        color: #ffffff;
+        border: solid 1px #505085;
+        box-shadow: 0px 3px 8px #1717176e;
+        background: linear-gradient(90deg,#323268,#5657A4,#323268);
+        padding: 10px 0px;
+        width: 60vw;
+        border-radius: 8px;
+        margin: 5px auto;
+        text-align: center;
+        font-size:5vw;
+        text-transform: capitalize;
+        text-align: center;
+        font-family: 'Dancing Script';
+        text-shadow: 0px 3px 3px #1717178c;
     }
     }
 

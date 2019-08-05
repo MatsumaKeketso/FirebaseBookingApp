@@ -1,61 +1,138 @@
 <ion-content>
 
     <div class="h">
-        <ion-item >
-            <div class="header">
-                <div class="details">
-                  <h3 *ngIf="userprofile.name">Hi {{userprofile.name}} {{userprofile.surname}}</h3>
-                  <h3 *ngIf="!userprofile.name">Hi New User</h3>
-                  <p>Hotels: {{hotelsNo}}</p>
-                </div>
-                <div *ngIf="userprofile.image" class="image" (click)="logout()">
-                    <img src="{{userprofile.image}}" alt="">
-                  </div>
-                <div *ngIf="!userprofile.image" class="image" (click)="logout()">
-                  <img src="../../assets/imgs/images/logo.PNG" alt="">
-                </div>
-              </div>
-        </ion-item>
-    </div>
-    <div class="empty" *ngIf="!info">
-      <button (click)="addHotel()">List Your Place</button>
-    </div>
-    <div class="container" *ngIf="info">
-      <div class="button">
-          <button (click)="addHotel()">List Your Place</button>
+      <div class="hotelname">
+        <p>{{hotel.name}}</p>
       </div>
-      <div class="details">
-        <div *ngFor="let n of hotels">
-          <div class="card">
-            <div class="image">
-              <img src="{{n.images}}">
-            </div>
-            <div class="detail">
-              <div class="header">
-                <h4>{{n.hotelName}}</h4>
-              </div>
-              <div class="desc">
-                <p>{{n.description}}</p>
-              </div>
-              <div class="contact">
-                <p>{{n.contact}}</p>
-                <p>{{n.location}}</p>
-              </div>
-              <div class="rating">
-                <div >
-                  <ion-icon *ngFor="let n of stars" name="star"></ion-icon>
-                </div>
-              </div>
-              <div class="view">
-                <!-- <button ion-button clear large style="background: none !important;"><ion-icon name="heart" color="primary"></ion-icon></button> -->
-               <button (click)="viewHotel(n)">View</button>
-              </div>
-              <div>
-
-              </div>
-            </div>
-          </div>
+      <div class="profile">
+        <div>
+          <div class="moree"><p>Hi {{userprofile.name}} {{userprofile.surname}}</p></div>
+        <div class="icon" (click)="logout()"><p><ion-icon name="more"></ion-icon></p></div>
         </div>
       </div>
     </div>
+    <div class="details">
+      <div class="space"></div>
+      <div class="info">
+          <div class="image">
+              <img src="{{hotel.image}}">
+          </div>
+        <div class="data">
+          <h3>Welcome to</h3>
+            <h1>{{hotel.name}}</h1>
+        </div>
+      </div>
+
+    </div>
+    <div class="container">
+        <div class="title">
+          <div class="foo">
+              <div class="line"></div>
+
+                  <h3>One of our bestsellers in Cape Town!</h3>
+
+              <div class="line"></div>
+          </div>
+        </div>
+        <p>
+          {{hotel.description}}
+        </p>
+        <h3>Most popular facilities</h3>
+        <div class="facilities">
+            <div class="fac" *ngFor="let item of hotel.facilities">{{item}}</div>
+        </div>
+        <div class="title">
+            <div class="foo">
+                <div class="line"></div>
+
+                    <h3>Landmarks</h3>
+
+                <div class="line"></div>
+            </div>
+          </div>
+          <div class="landmarks">
+            <div class="marks" *ngFor="let n of landmark">{{n.name}} : {{n.distance}}</div>
+          </div>
+          <div class="title">
+              <div class="foo">
+                  <div class="line"></div>
+
+                      <h3>Naturals</h3>
+
+                  <div class="line"></div>
+              </div>
+            </div>
+            <div class="naturals">
+                <div class="rals" *ngFor="let n of naturals">{{n.name}} : {{n.distance}}</div>
+              </div>
+              <div class="title location">
+                  <div class="foo">
+                      <div class="line"></div>
+                          <h3>{{hotel.location}}</h3>
+                      <div class="line"></div>
+                  </div>
+                </div>
+
+                <div class="title">
+                    <div class="foo">
+
+                            <h3>Rooms</h3>
+
+                        <div class="line"></div>
+                    </div>
+                  </div>
+                <div class="rooms">
+                  <div class="rcard" *ngFor="let r of room">
+                    <div class="image"><img src="{{r.image}}" alt=""></div>
+                    <div class="details">
+                        <div class="name"> <p> {{r.name}} </p> </div>
+                        <div class="price"><p>R {{r.price}} pp/pn </p></div>
+                    </div>
+                    <div class="view"> <button (click)="viewRoom(r)">View</button> </div>
+                  </div>
+                </div>
+                <!-- THER REVIEWS SECTION -->
+                <div class="reviews">
+                  <!-- THE REVIEW LIST DISPLAY -->
+                  <h1>Reviews</h1>
+                  <div class="rev">
+                    <!-- THE REVIEW BUBBLE -->
+                    <div class="buble" *ngFor="let r of reviews">
+                      <!-- PROFILE OF THE USER -->
+                      <div class="profile">
+                        <!-- IMAGE OF USE (IF ANY) -->
+                        <div class="image">
+                          <div class="img">
+                              <img src="{{r.image}}" alt="">
+                          </div>
+                        </div>
+                        <!-- NAME SURNAME DATE OF REVIEW -->
+                        <div class="details">
+                          <div>
+                              <h3>{{r.name}}</h3>
+                              <p>{{r.date}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- THE CREVIEW ITSELF -->
+                      <div class="text"><p>"{{r.text}}"</p></div>
+                    </div>
+                    <div *ngIf="!reviews" class="buble" >
+                       <p>No reviews yet</p>
+                      </div>
+                    
+                  </div>
+                  <div class="space">
+
+                  </div>
+                  <!-- INPUT FOR THE USER TO SEND REVIEW -->
+                  <div class="reiewinput">
+                    <ion-item>
+                      <ion-label floating>Add a Review</ion-label>
+                      <ion-textarea rows="6" cols="20" [(ngModel)]="review.text"></ion-textarea>
+                    </ion-item>
+                    <button ion-button full (click)="createReview()">Send Review</button>
+                  </div>
+                </div>
+      </div>
 </ion-content>

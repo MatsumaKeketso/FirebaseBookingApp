@@ -1,0 +1,85 @@
+page-payment {
+  .head{
+    text-align: center;
+    height: 15vh;
+    display: grid;
+    align-content: center;
+    p{
+      font-family: 'Dancing Script';
+      padding: 20px 0px;
+      font-size: 200%;
+    }
+  }
+
+  .slid{
+    width: 90%;
+    margin: auto;
+    height: 55vh;
+    box-shadow: 0px 0px 10px #10101034;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0px 10px;
+    text-align: left;
+    .cardowner{
+      width: 100%;
+      display: flex;
+      margin: 20px auto;
+      padding: 20px 0px;
+      div{
+        width: 50%;
+      }
+    }
+    .carddetails{
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      margin: 20px auto;
+      padding: 20px 0px;
+      div{
+        width: 50%;
+      }
+    }
+  }
+  .res{
+    display: grid;
+    align-content: center;
+    height: auto;
+    padding: 10px 0px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    .print{
+      h2{
+        color: gray;
+        text-shadow: 0px 3px 2px #17171727;
+      }
+      padding: 20px 0px;
+      .details{
+        height: 0px;
+        overflow: hidden;
+      }
+    }
+    .print:hover{
+      .details{
+        height: auto;
+        transition: 0.3s;
+      }
+    }
+    button{
+      color: #ffffff;
+      border: solid 1px #505085;
+      box-shadow: 0px -3px 8px #1717176e;
+      background: linear-gradient(90deg,#323268,#5657A4,#323268);
+      padding: 10px 0px;
+      width: 100%;
+      border-radius: 8px;
+      text-align: center;
+      font-size:5vw;
+      text-transform: capitalize;
+      text-align: center;
+      font-family: 'Dancing Script';
+      text-shadow: 0px 3px 3px #1717178c;
+      margin: 10px 0px;;
+      }
+  }
+}

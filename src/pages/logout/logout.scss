@@ -1,3 +1,40 @@
 page-logout {
-
+  *{
+    transition: 0.5s !important;
+  }
+  .container{
+    width: 100%;
+    height: 100%;
+    background: #323268 !important;
+    padding: 0px 0px;
+    border-radius: 8px;
+    .logout{
+      color: rgb(255, 255, 255) !important;
+      background: linear-gradient(90deg,#960000,rgb(214, 62, 62),#860000);
+      padding: 5px 0px !important;
+      opacity: 0.7;
+      font-family: 'Muli';
+      font-size: 100%;
+      margin-top: 10px !important;
+    }
+    .logout:hover{
+      opacity: 1;
+    }
+    button{
+      color: #ffffff;
+        border: solid 1px #505085;
+        box-shadow: 0px 3px 8px #1717176e;
+        background: linear-gradient(90deg,#323268,#5657A4,#323268);
+        padding: 10px 0px;
+        width: 100%;
+        border-radius: 8px;
+        margin: 3px auto;
+        text-align: center;
+        font-size:5vw;
+        text-transform: capitalize;
+        text-align: center;
+        font-family: 'Dancing Script';
+        text-shadow: 0px 3px 3px #1717178c;
+    }
+  }
 }

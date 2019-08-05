@@ -1,0 +1,55 @@
+page-confirmed {
+  .container{
+    color: white;
+    font-family: 'Muli';
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(rgba(40, 0, 85, 0.938)),url(https://firebasestorage.googleapis.com/v0/b/hotel-cms-d3e5c.appspot.com/o/104332924.jpg?alt=media&token=bb14dbef-1d5d-4bc5-a50a-7f2f55d03ebb);
+    background-size: cover;
+    background-attachment: fixed;
+    .head{
+      height: 20vh;
+      display: grid;
+      align-content: center;
+    }
+    .image{
+      height: 50vh;
+      width: 100%;
+      display: grid;
+      align-content: center;
+      text-align: center;
+      p{
+        font-size: 50vw;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .cont{
+      height: 30vh;
+      width: 100%;
+      display: grid;
+      align-content: center;
+      p{
+        font-size: 4vw;
+        text-shadow: 0px 3px 3px #17171798;
+      }
+      button{
+        color: #ffffff;
+        border: solid 1px #505085;
+        box-shadow: 0px -3px 8px #1717176e;
+        background: linear-gradient(90deg,#323268,#5657A4,#323268);
+        padding: 10px 0px;
+        width: 100%;
+        border-radius: 8px;
+        text-align: center;
+        font-size:5vw;
+        text-transform: capitalize;
+        text-align: center;
+        font-family: 'Dancing Script';
+        text-shadow: 0px 3px 3px #1717178c;
+        margin: 10px 0px;;
+        }
+    }
+  }
+}

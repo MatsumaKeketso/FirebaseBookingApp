@@ -18,83 +18,122 @@ export class OwnerHomePage {
   info = false;
   stars = [1,2,3,4];
   // to display the hotels
-  hotels = [ ];
-  hotelsNo;
+  hotel = {};
+  landmark = [];
+  naturals = [];
+  room = [];
   user: any;
   userprofile = {};
+
+  review = {
+    image: '',
+    name: '',
+    date: '',
+    text: ''
+  };
+  reviews = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public popoverCtrl: PopoverController, public toastCtrl: ToastController, public alertCtrl: AlertController, public toast: ToastController, private userProv: UserProvider) {
   }
 ionViewDidLoad() {
-  // from this we can access this.navParams.data.uid or anything we need
-  console.log('Home params received: ', this.navParams);
-    this.user = this.navParams.data.email;
-    // get the data for the page
-    this.getData();
-    let users = this.db.collection('users');
+  const loading = this.loadingCtrl.create({
+    content: 'Loading'
+  });
+  loading.present();
+  //get the user profile
+  let users = this.db.collection('users');
     // ...query the profile that contains the uid of the currently logged in user...
-      let query = users.where("uid", "==", this.userProv.getUser().uid);
+    let query = users.where("uid", "==", this.userProv.getUser().uid);
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
-        console.log('Got Data');
-
-        querySnapshot.forEach(doc =>  {
+        console.log('Got data', querySnapshot);
+        querySnapshot.forEach(doc => {
+          
           this.userprofile = doc.data();
-          console.log('Profile from OHome: ', this.userprofile);
+          this.review.name = doc.data().name;
+          this.review.image = doc.data().image;
+          console.log('Profile Document: ', this.userprofile)
         })
       } else {
-        this.userprofile = this.userProv.getUser().email;
+        console.log('No data');
       }
       // dismiss the loading
     }).catch(err => {
       // catch any errors that occur with the query.
       console.log("Query Results: ", err);
-      // dismiss the loading
     })
-  }
-  addHotel(){
-    // pushes to the addhotelpage with the paarmeter data
-    this.navCtrl.push(OwnerAddHotelPage, this.navParams);
-  }
-  // getting a list of hotels
-  async getData(){
-    const load = this.loadingCtrl.create({
-      spinner: 'bubbles',
-      content: 'Getting Info...'
-    });
-    load.present();
-    // get the documents(Hotels) inside the hotels collection
-      this.db.collection('hotels').get().then(async querySnapshot => {
-        querySnapshot.forEach(doc => {
-          // '.data()' returns objects, push them into an array for display
-          if (doc.data()) {
-            this.hotels.push(doc.data());
-            this.info = true;
-          } else {
-            let toast = this.toastCtrl.create({
-              message: 'No hotels in database.',
-              duration: 3000
-            })
-            toast.present();
-          }
-        });
-// get the array length and assign its value
-        this.hotelsNo = this.hotels.length;
-        // dismiss the loadCtrl
-        load.dismiss();
-      }).catch(err => {
-        let toast = this.toastCtrl.create({
-          message: 'Error loading data. Please try again.',
-          duration: 3000
-        })
-        toast.present();
-        load.dismiss();
+    // get the hotel data
+    this.db.collection('hotel').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        this.hotel = doc.data();
       });
+    });
+    // get the rooms
+    this.db.collection('rooms').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        this.room.push(doc.data());
+      });
+    });
+    // get the hotel landmarks
+    this.db.collection('hotel').doc('Azure Grotto Hotel').collection('landmarks').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        this.landmark.push(doc.data());
+      });
+    });
+    // get the hotel's natural attractions
+    this.db.collection('hotel').doc('Azure Grotto Hotel').collection('naturals').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        this.naturals.push(doc.data());
+      });
+      loading.dismiss();
+    });
+   this.getReviews();
+   
   }
   // viewing room
-  viewHotel(hotel){
+  viewRoom(room){
     // receive the room data from the html and navigate to the next page with it
-    this.navCtrl.push(OwnerViewHotelPage, {hotel});
+    this.navCtrl.push(OwnerViewHotelPage, {room});
+  }
+  // create a review
+  createReview(){
+    const date = new Date();
+    this.review.date = date.toDateString();
+    console.log('User Review: ', this.review);
+    if (this.review.text){
+      this.db.collection('reviews').add(this.review).then(res => {
+        this.toast.create({
+          message: 'Review sent',
+          duration: 2000
+        }).present();
+        this.review = {
+          image: '',
+          name: '',
+          date: '',
+          text: ''
+        };
+        this.getReviews();
+      });
+    } else {
+      this.toast.create({
+        message: "Can't send empty review",
+        duration: 3000
+      }).present();
+    }
+  }
+  getReviews(){
+     // get the hotel's reviews
+     this.reviews = [];
+     this.db.collection('reviews').get().then(snapshot => {
+      if (snapshot.empty !== true){
+        console.log('Got Reviews')
+        snapshot.forEach(doc => {
+          this.reviews.push(doc.data());
+        });
+      } else {
+        console.log('No Reviews')
+      }
+    })
   }
   // logout user
   async logout(){

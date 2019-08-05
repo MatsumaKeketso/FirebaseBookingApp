@@ -3,10 +3,14 @@
   <div class="button">
     <button ion-button clear large color="light" (click)="goBack()"><ion-icon name="arrow-round-back"></ion-icon></button>
   </div>
-  <h3>Travel Hotel</h3>
+  <div>
+      <h3 *ngIf="room.name">Booking a {{room.name}}</h3>
+  </div>
 </div>
 <div class="form">
+    <p>Let us know who you are.</p>
   <div class="personal">
+
     <div class="left">
         <ion-item>
             <ion-label floating >Name</ion-label>
@@ -33,10 +37,12 @@
       <div class="circle"></div>
       <div class="li"></div>
     </div>
+    <p>Your booking is almost done.</p>
     <div class="booking">
+
       <div class="left">
           <ion-item>
-              <ion-label>Check In</ion-label>
+              <ion-label floating>Check In</ion-label>
               <ion-datetime displayFormat="MM/DD/YYYY"  [(ngModel)]="bookingInfo.checkin"></ion-datetime>
             </ion-item>
             <ion-item>
@@ -46,34 +52,17 @@
       </div>
       <div class="right">
           <ion-item>
-              <ion-label>Check Out</ion-label>
+              <ion-label floating>Check Out</ion-label>
               <ion-datetime displayFormat="MM/DD/YYYY"  [(ngModel)]="bookingInfo.checkout"></ion-datetime>
             </ion-item>
       </div>
-    </div>
-    <div class="payment">
-      <div class="labell">
-        <p>Credit Card</p>
-      </div>
-      <ion-item>
-        <ion-label floating >Card Number</ion-label>
-        <ion-input type="tel"  [(ngModel)]="bookingInfo.cardnumber"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating >Security Code</ion-label>
-          <ion-input type="tel"  [(ngModel)]="bookingInfo.securitycode" ></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Card Expiary Date</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY"  [(ngModel)]="bookingInfo.cardexpiary"></ion-datetime>
-          </ion-item>
     </div>
     <div class="line">
         <div class="li"></div>
         <div class="circle"></div>
         <div class="li"></div>
       </div>
-      <div class="butom"><button class="buutton" (click)="createBooking()">Book Your Room</button>
+      <div class="butom"><button class="buutton" (click)="createBooking()">Next</button>
       </div>
 
 </div>

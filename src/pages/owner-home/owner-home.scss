@@ -8,161 +8,316 @@ page-owner-home {
     margin: 0;
   }
 .h{
-  .item{
-    padding: 0px !important;
-    margin: 0px !important;
-    overflow: auto;
-    background: #080C26;
-    border-radius: 0px 0px 50px 0px;
-    border: none !important;
-    box-shadow: 0px 0px 10px #171717;
-    .header{
+  position: fixed;
+  background: rgb(113, 68, 150);
+  height: 8vh;
+  right: 0;
+  left: 0;
+  display: flex;
+  color: white;
+  border-radius: 0px 0px 10px 10px;
+  z-index: 10;
+  box-shadow: 0px 2px 8px #17171791;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.082);
+  div{
+    width: 50%;
+  }
+  .hotelname{
+    flex-basis: 70%;
+    display: grid;
+    align-content: center;
+    padding: 10px;
+    p{
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .profile{
+    display: grid;
+    align-content: center;
+    height: 100%;
+    div{
       width: 100%;
-      height: 20%;
-      background: rgb(8, 12, 38);
-      color: white;
-      padding: 10px;
       display: flex;
-      border-radius: 0px 0px 50px 0px;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.185);
-      .details{
-        flex-basis: 80%;
+      height: 100%;
+      .icon{
+        text-align: center;
+        width: 20%;
+        display: grid;
+        align-content: center;
         p{
           margin: 0;
-          margin-left: 5px;
-          padding: 5px;
-          color: rgb(255, 227, 200);
+          padding: 0;
+          text-align: center;
         }
       }
-      .image{
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        overflow: hidden;
-        box-shadow:
-        0 0 0 2px hsla(39, 83%, 71%, 0.315),
-        0 0 0px 4px hsla(39, 83%, 71%, 0.253);
-        img{
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+      .moree{
+
+        width: 80%;
+        p{
+          margin: 0;
+          padding: 0;
         }
+      }
+      div{
+        width: 50%;
       }
     }
   }
 }
-.empty{
-  width: 100%;
-  height: 77vh;
-  overflow-y: auto;
-  display: grid;
-  align-items: center;
-  text-align: center;
-  button{
-    margin: auto;
-    width: 50vw;
-    padding: 10px 0px;
-    background: #F2C777;
-    border-radius: 50px 0px 50px 0px;
+.details{
+  .space{
+    height: 7vh;
+    width: 100%;
+  }
+  .info{
+    height: 93vh;
+    position: relative;
+    .image{
+      height: 100%;
+      width: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+      .data{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: grid;
+        align-content: center;
+        text-align: center;
+        h1{
+          padding: 0;
+          margin: 0;
+          font-size: 10vw;
+          color: white;
+          background: linear-gradient(rgba(36, 37, 38, 0),rgba(36, 37, 38, 0.801),rgba(36, 37, 38, 0))
+        }
+
+      }
   }
 }
 .container{
-  padding: 0px 5px !important;
   width: 100%;
-  height: 100vh;
-  .button{
-    width: 100%;
-    height: auto;
-    text-align: left;
-    margin-top: -0px;
-    button{
-      margin: 0px;
-      width: 40vw;
-      padding: 10px 0px;
-      border-bottom-right-radius: 50px;
-      background: #F2C777;
+  .facilities{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0px;
+    .fac{
+      background: #5657A4;
+      padding: 5px;
+      margin: 2px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 8px #17171770;
+      color: white;
     }
   }
-  .details{
-    width: 100vw;
-    height: 70.5vh;
-    padding: 10px 0px;
-    overflow: hidden;
-    overflow-y: auto;
-    .card{
-      position: relative;
-      //
-      width: 80vw;
-      height: 50vh;
-      margin: 25px 0px 25px 0px;
-      border-radius: 50px 0px 0px 50px;
-      .image{
+  .landmarks{
+    margin: 20px 0px 20px 20px;
+    .marks{
+      margin: 5px 0px;
+    }
+  }
+  .naturals{
+    margin: 20px 0px 20px 20px;
+    .rals{
+      margin: 5px 0px;
+    }
+  }
+
+  h3{
+    text-transform: uppercase;
+    margin: 30px 0px 0px 10px;
+    color: rgba(0, 0, 0, 0.541);
+  }
+  .location{
+    background: #3F3F7C;
+
+    .foo{
+      width: 100%;
+      text-align: center;
+      h3{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: white;
+      }
+      div{
+        width: 33.33%;
+      }
+      .line{
+        margin: 20px 0px;
+        height: 2px;
         width: 100%;
-        height: 100%;
+        background: #71727281;
+      }
+    }
+  }
+  .title{
+    margin: 10px auto;
+    width: 100%;
+    text-align: center;
+    display: grid;
+    align-content: center;
+    height: 8vh;
+    .foo{
+      width: 100%;
+      text-align: center;
+      h3{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      div{
+        width: 33.33%;
+      }
+      .line{
+        margin: 20px 0px;
+        height: 2px;
+        width: 100%;
+        background: #71727281;
+      }
+    }
+  }
+  .rooms{
+    width: 100%;
+    height: 50vh;
+    overflow-y: auto;
+    .rcard{
+      width: 98%;
+      height: auto;
+      box-shadow: 0px 0px 3px #17171763;
+      margin: 10px auto;
+      border-radius: 8px;
+      overflow: hidden;
+      .image{
+        border-radius: 8px 8px 0px 0px;
+        overflow: hidden;
+        height: 40%;
         img{
-          border-radius: 50px 0px 0px 50px;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          position: left;
-          background-origin: left;
-          .carousel-item{
-            height: 100% !important;
-            width: 100% !important;
+        }
+
+      }
+      .details{
+          width: 50%;
+          display: flex;
+          margin: 10px auto;
+          div{
+            height: 5%;
+            display: grid;
+            align-content: center;
+            p{
+              margin: 0;
+              padding: 0;
+            }
           }
+          .name{
+            padding: 10px;
+          }
+          .price{
+            padding: 10px;
+          }
+        }
+        button{
+          color: #ffffff;
+        border: solid 1px #505085;
+        box-shadow: 0px -3px 8px #1717176e;
+        background: linear-gradient(90deg,#323268,#5657A4,#323268);
+        padding: 10px 0px;
+        width: 100%;
+        border-radius: 8px;
+        text-align: center;
+        font-size:5vw;
+        text-transform: capitalize;
+        text-align: center;
+        font-family: 'Dancing Script';
+        text-shadow: 0px 3px 3px #1717178c;
+        }
+    }
+  }
+  .reviews{
+    width: 100%;
+    height: 80vh;
+    margin:  10px 0px;
+    position: relative;
+    text-align: center;
+    h1{
+      text-transform: uppercase;
+      color: gray;
+      border-top: solid 1px gray;
+      border-bottom: solid 1px gray;
+      margin: 30px 0px 30px 0px;
+      padding: 10px 0px;
+    }
+    .rev{
+      height: 70%;
+      overflow-y: auto;
+      .buble{
+        text-align: left;
+        width: 98%;
+        margin: 10px auto;
+        height: auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 8px #17171750;
+        .profile{
+          display: flex;
+          width: 100%;
+          height: 10%;
+          div{
+            display: grid;
+            align-content: center;
+          }
+          .image{
+            flex-basis: 20%;
+
+            display: grid;
+            align-content: center;
+
+            .img{
+              margin: auto;
+              width: 50px;
+            height: 50px;
+            border-radius: 200px;
+              background: orange;
+              img{
+                width: 100%;
+              height: 100%;
+              object-fit: cover;
+              }
+            }
+          }
+          .details{
+            flex-basis: 80%;
+            display: grid;
+            align-content: center;
+            height: 100%;
+            padding: 10px;
+            h3, p{
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+        .text{
+          padding: 10px;
         }
       }
-      .detail{
-        width: 56%;
-        border-top-right-radius: 50px;
-        overflow: hidden;
-        position: absolute;
-        z-index: 5;
-        bottom: -10px;
-        top: -10px;
-        right: -15vw;
-        box-shadow: -5px 0px 10px #00000060;
-        background: linear-gradient(rgb(255, 228, 171) 5%);
-        border-radius: 0px 50px 50px 0px;
-        .header{
-          color: rgb(51, 33, 0);
-          padding: 0px 10px;
-          h4{
-            font-size: 150%;
-            text-align: left;
-            padding: 10px 0px;
-          }
-        }
-        .desc{
-          padding: 10px 20px ;
-          border-top: solid 1px rgb(175, 121, 50);
-          p{
-            color: #080C26;
-            text-shadow: 0px 0px 1px #1717176b;
-          }
-        }
-        .contact{
-          padding: 0px 20px;
-          color: #080C26;
-        }
-        .rating{
-          padding: 5px 0px;
-          text-align: center;
-        }
-        .view{
-          text-align: right;
-          padding-right: 0%;
-          button{
-            z-index: 7;
-            width: 110px;
-            padding: 10px 0px;
-            margin: 0px -10px 0px 0px;
-            border-radius: 50px 0px 0px 50px;
-            background: #080C26;
-            color: #F2C777;
-          }
-        }
-      }
+    }
+    .reiewinput{
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
   }
 }
