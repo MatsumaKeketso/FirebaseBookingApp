@@ -20,6 +20,7 @@ page-payment {
     overflow: hidden;
     padding: 0px 10px;
     text-align: left;
+    overflow-y: auto;
     .cardowner{
       width: 100%;
       display: flex;

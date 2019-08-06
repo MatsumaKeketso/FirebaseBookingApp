@@ -91,6 +91,7 @@ page-owner-home {
         display: grid;
         align-content: center;
         text-align: center;
+        color: white;
         h1{
           padding: 0;
           margin: 0;
@@ -150,11 +151,15 @@ page-owner-home {
       div{
         width: 33.33%;
       }
+
       .line{
         margin: 20px 0px;
         height: 2px;
         width: 100%;
         background: #71727281;
+      }
+      .l{
+        background: #71727200 !important;
       }
     }
   }
@@ -245,7 +250,7 @@ page-owner-home {
   }
   .reviews{
     width: 100%;
-    height: 80vh;
+    // height: 80vh;
     margin:  10px 0px;
     position: relative;
     text-align: center;
@@ -258,7 +263,7 @@ page-owner-home {
       padding: 10px 0px;
     }
     .rev{
-      height: 70%;
+      height: 60vh;
       overflow-y: auto;
       .buble{
         text-align: left;
@@ -313,11 +318,7 @@ page-owner-home {
       }
     }
     .reiewinput{
-      overflow: hidden;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      width: 100%;
     }
   }
 }

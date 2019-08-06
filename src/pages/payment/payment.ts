@@ -73,7 +73,19 @@ sleeps: null,
             duration: 3000
           }).present();
         } else{
-          this.db.collection('bookings').doc(this.booking.roomname+this.booking.uid).collection('payment').doc(this.payment.method).set(this.payment).then(res => {
+          if (this.payment.cardnumber.length < 13 || this.payment.cardnumber.length > 13) {
+            this.toast.create({
+              message: 'Card number invalid. Digits are more or less than 13.',
+              duration: 3000
+            }).present();
+          } else {
+            if (this.payment.cvv.length < 3 || this.payment.cvv.length > 3) {
+              this.toast.create({
+                message: 'CVV invalid. Digits are more or less than 3.',
+                duration: 3000
+              }).present();
+            } else {
+              this.db.collection('bookings').doc(this.booking.roomname+this.booking.uid).collection('payment').doc(this.payment.method).set(this.payment).then(res => {
            this.navCtrl.push(ConfirmedPage);
           }).catch(err => {
             this.toast.create({
@@ -81,6 +93,9 @@ sleeps: null,
               duration: 3000
             }).present();
           })
+            }
+          }
+
         }
       }
   }
