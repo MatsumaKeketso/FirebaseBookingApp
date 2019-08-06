@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
+import { OwnerHomePage } from '../owner-home/owner-home';
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -28,7 +29,11 @@ export class ProfilePage {
   // store the selected image for upload
   profileImage;
   imageSelected = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public camera: Camera, private userProv: UserProvider, public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
+
+  bookings= [];
+  nobookings = 0;
+  arebookings = false;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public camera: Camera, private userProv: UserProvider, public toastCtrl: ToastController, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -37,6 +42,7 @@ export class ProfilePage {
     this.userProfile.uid = this.userProv.user.uid
     this.userProfile.email = this.userProv.getUser().email;
     this.getProfile();
+    this.getBookings();
   }
   setUser(){
     this.loggedInUser = this.userProv.getUser();
@@ -75,7 +81,13 @@ export class ProfilePage {
         duration: 3000
       }).present();
      }else {
-        // load the profile creation process
+       if (this.userProfile.phone.length < 10 || this.userProfile.phone.length > 10) {
+        this.toastCtrl.create({
+          message: 'Number must be 10 digits',
+          duration: 3000
+        }).present();
+       } else {
+         // load the profile creation process
     const load = this.loadingCtrl.create({
       content: 'Uploading Profile Image...'
     });
@@ -122,6 +134,8 @@ export class ProfilePage {
 
       })
      })
+       }
+
      }
     }
   }
@@ -157,14 +171,49 @@ export class ProfilePage {
       load.dismiss();
     })
   }
-  getBookins(){
-    
+  getBookings(){
+    this.db.collection('bookings').where('uid', '==', this.userProv.getUser().uid).get().then(snapshot => {
+      if(snapshot.empty !== true){
+        snapshot.forEach(doc => {
+          this.bookings.push(doc.data());
+        })
+        this.nobookings = this.bookings.length;
+        this.arebookings = true;
+      }
+    })
+  }
+  presentConfirm(booking) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm cancel',
+      message: 'Do you want to cancel this reservation?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.db.collection('bookings').doc(booking.roomname+this.userProv.getUser().uid).delete().then(res => {
+              this.bookings = [];
+              this.nobookings = 0;
+              this.getBookings();
+              this.toastCtrl.create({
+                message: 'Booking Cancelled',
+                duration: 3000
+              }).present();
+            })
+          }
+        }
+      ]
+    });
+    alert.present();
   }
   reset(){
     this.profileImage = '';
   }
   goBack(){
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(OwnerHomePage);
   }
 
 }

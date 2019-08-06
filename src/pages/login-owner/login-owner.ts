@@ -5,6 +5,7 @@ import { RegisterOwnerPage } from '../register-owner/register-owner';
 import * as firebase from 'firebase';
 import { UserProvider } from "../../providers/user/user";
 import { HomePage } from '../home/home';
+import { ProfilePage } from '../profile/profile';
 @IonicPage()
 @Component({
   selector: 'page-login-owner',
@@ -25,9 +26,13 @@ export class LoginOwnerPage {
       if (user){
         // send the user's data if they're still loggedin
         this.userProv.setUser(user);
-        console.log('login user auth response: ', user);
-        // from user we can access the uid by : user.uid
-        this.navCtrl.setRoot(OwnerHomePage, user);
+        this.db.collection('users').where('uid', '==', this.userProv.getUser().uid).get().then(snapshot => {
+          if (snapshot.empty){
+            this.navCtrl.push(ProfilePage);
+          } else {
+            this.navCtrl.setRoot(OwnerHomePage);
+          }
+        });
       }
     })
   }

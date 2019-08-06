@@ -1,6 +1,6 @@
 <ion-content>
   <ion-fab top left>
-    <button ion-fab (click)="goBack()" >Back</button>
+    <button ion-fab (click)="goBack()" >Home</button>
   </ion-fab>
   <div *ngIf="!isProfile">
     <h1>Create Profile</h1>
@@ -26,6 +26,10 @@
       <ion-label floating>Phone Number</ion-label>
       <ion-input type="tel" [(ngModel)]="userProfile.phone"></ion-input>
     </ion-item>
+    <ion-item>
+        <ion-label floating>Bio</ion-label>
+        <ion-textarea [(ngModel)]="userProfile.bio"></ion-textarea>
+      </ion-item>
         <button ion-button large clear full center (click)="createUser()">Create Profile</button>
 
   </div>
@@ -46,5 +50,23 @@
           <div class="email"><p>{{displayProfile.email}}</p></div>
         </div>
 
+  </div>
+
+  <div *ngIf="isProfile" class="booking">
+    <h1>Your Bookings</h1>
+    <p>You have {{nobookings}} bookings.</p>
+    <div class="reserves">
+
+      <div *ngFor="let b of bookings; let i = index" class="book">
+        <div class="head">
+            <h3>{{b.roomname}}</h3>
+        </div>
+        <div class="details">
+            <p>You are staying with {{b.adults}} person(s) for {{b.days}} days from {{b.checkin | date}} to {{b.checkout | date}}</p>
+            <h4>Amount: R{{b.price}} pp/pn</h4>
+            <button ion-fab large color="danger" (click)="presentConfirm(b) ">Cancel</button>
+        </div>
+        </div>
+    </div>
   </div>
 </ion-content>

@@ -94,7 +94,7 @@ export class BookingPage {
               const diff = EndDate.valueOf() - StartDate.valueOf();
               this.bookingInfo.days = Math.floor(diff / days); // 2
               // calculate the amount cost of stay
-              this.bookingInfo.price = this.room.price * this.bookingInfo.days * parseInt(this.bookingInfo.adults); // 3
+              this.bookingInfo.price = this.room.price * (this.bookingInfo.days * parseInt(this.bookingInfo.adults)); // 3
               console.log( 'tHE BOOKING INFO: ' ,this.bookingInfo);
                // EVERYTHING SHOULD BE FINE
 
