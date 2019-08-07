@@ -43,7 +43,7 @@
       <div class="left">
           <ion-item>
               <ion-label floating>Check In</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY"  [(ngModel)]="bookingInfo.checkin"></ion-datetime>
+              <ion-input  type="date" [(ngModel)]="bookingInfo.checkin"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating >Adults</ion-label>
@@ -53,7 +53,7 @@
       <div class="right">
           <ion-item>
               <ion-label floating>Check Out</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY"  [(ngModel)]="bookingInfo.checkout"></ion-datetime>
+              <ion-input  type="date"  [(ngModel)]="bookingInfo.checkout"></ion-input>
             </ion-item>
       </div>
     </div>
