@@ -34,6 +34,8 @@ import { BookingPage } from '../pages/booking/booking';
 import { ViewbookingPage } from '../pages/viewbooking/viewbooking';
 import { PaymentPage } from '../pages/payment/payment';
 import { ConfirmedPage } from '../pages/confirmed/confirmed';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
+
 firebase.initializeApp(FIREBASE_CONFIG);
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ firebase.initializeApp(FIREBASE_CONFIG);
     BookingPage,
     ViewbookingPage,
     PaymentPage,
-    ConfirmedPage
+    ConfirmedPage,
+    OnboardingPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ firebase.initializeApp(FIREBASE_CONFIG);
     BookingPage,
     ViewbookingPage,
     PaymentPage,
-    ConfirmedPage
+    ConfirmedPage,
+    OnboardingPage
   ],
   providers: [
     StatusBar,
