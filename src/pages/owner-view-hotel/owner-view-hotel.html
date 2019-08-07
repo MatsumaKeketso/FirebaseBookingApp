@@ -34,6 +34,7 @@
           <button ion-button (click)="toBooking(room)">Book Now</button>
       </div>
     </div>
+    <p>Description:{{room.description}}</p>
     <h2>Room features</h2>
     <div class="features">
       <div class="feat" *ngFor="let f of room.features"> {{f}}</div>
