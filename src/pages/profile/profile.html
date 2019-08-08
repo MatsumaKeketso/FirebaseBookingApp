@@ -1,12 +1,12 @@
 <ion-content>
   <ion-fab top left>
-    <button ion-fab (click)="goBack()" >Home</button>
+    <button ion-fab (click)="goBack()" ><ion-icon name="arrow-back"></ion-icon></button>
   </ion-fab>
   <div *ngIf="!isProfile">
     <h1>Create Profile</h1>
  <div *ngIf="profileImage" class="image">
    <div class="del" ><button fab-button clear (click)="reset()"><ion-icon clear clear name="trash"></ion-icon></button></div>
-    <img  src="{{image}}">
+    <img  src="{{profileImage}}">
  </div>
   <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
 

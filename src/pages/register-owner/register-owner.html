@@ -10,8 +10,9 @@
             <p id="error">{{error}}</p>
           </div>
      <div class="inputs">
-       <input type="text" [(ngModel)]="user.email" placeholder="Email">
-       <input type="text" [(ngModel)]="user.password" placeholder="Password">
+       <input type="email" [(ngModel)]="user.email" placeholder="Email">
+       <input type="password" [(ngModel)]="user.password" placeholder="Password">
+       <input type="password" placeholder=" Repeat Password" (change)="rpassword($event)">
        </div>
        <div class="link">
          <button (click)="toLogin()">Already have an account?</button>

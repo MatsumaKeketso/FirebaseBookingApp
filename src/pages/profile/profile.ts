@@ -38,11 +38,13 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    console.log('Profile user: ', this.userProv.user.uid);
-    this.userProfile.uid = this.userProv.user.uid
-    this.userProfile.email = this.userProv.getUser().email;
-    this.getProfile();
-    this.getBookings();
+    console.log('Room: ', this.navParams.data);
+
+    // console.log('Profile user: ', this.userProv.user.uid);
+    // this.userProfile.uid = this.userProv.user.uid
+    // this.userProfile.email = this.userProv.getUser().email;
+    // this.getProfile();
+    // this.getBookings();
   }
   setUser(){
     this.loggedInUser = this.userProv.getUser();
@@ -89,7 +91,7 @@ export class ProfilePage {
        } else {
          // load the profile creation process
     const load = this.loadingCtrl.create({
-      content: 'Uploading Profile Image...'
+      content: 'Creating Profile..'
     });
     load.present();
     const UserImage = this.storage.child(this.userProfile.name+this.userProv.getUser().uid+'.jpg');
@@ -98,7 +100,7 @@ export class ProfilePage {
      upload.on('state_changed', snapshot => {
        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
        if (progress == 100){
-        load.dismiss();
+        // load.dismiss();
        }
      }, err => {
      }, () => {
@@ -106,10 +108,10 @@ export class ProfilePage {
         this.userProfile.image = downUrl;
 
       // add a doc profile for the currently loggged in user
-      let load2 = this.loadingCtrl.create({
-        content: 'Adding Profile'
-      })
-      load2.present();
+      // let load2 = this.loadingCtrl.create({
+      //   content: 'Adding Profile'
+      // })
+      // load2.present();
       // set the doc's id to the user's uid
       // set the doc's fields
         const user = this.db.collection('users').doc(this.userProv.getUser().uid).set(this.userProfile);
@@ -120,7 +122,7 @@ export class ProfilePage {
           duration: 2000
         }).present();
         // ...get the profile that just got created...
-        load2.dismiss();
+        load.dismiss();
         this.getProfile()
         // catch any errors.
       }).catch( err=> {
@@ -129,7 +131,7 @@ export class ProfilePage {
           duration: 2000
         }).present();
         this.isProfile = false;
-        load2.dismiss();
+        load.dismiss();
       })
 
       })

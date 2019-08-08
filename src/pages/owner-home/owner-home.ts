@@ -6,6 +6,8 @@ import { OwnerViewHotelPage } from '../owner-view-hotel/owner-view-hotel';
 import { LogoutPage } from '../logout/logout';
 import { HomePage } from '../home/home';
 import { UserProvider } from '../../providers/user/user';
+import { RegisterOwnerPage } from '../register-owner/register-owner';
+import { ProfilePage } from '../profile/profile';
 @IonicPage()
 @Component({
   selector: 'page-owner-home',
@@ -41,14 +43,15 @@ ionViewDidLoad() {
   loading.present();
   //get the user profile
   let users = this.db.collection('users');
+
+    /* let query = users.where("uid", "==", this.userProv.getUser().uid)
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.userProv.getUser().uid);
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
-          
+
           this.userprofile = doc.data();
           this.review.name = doc.data().name;
           this.review.image = doc.data().image;
@@ -61,7 +64,7 @@ ionViewDidLoad() {
     }).catch(err => {
       // catch any errors that occur with the query.
       console.log("Query Results: ", err);
-    })
+    }) */
     // get the hotel data
     this.db.collection('hotel').get().then(snapshot => {
       snapshot.forEach(doc => {
@@ -73,6 +76,8 @@ ionViewDidLoad() {
       snapshot.forEach(doc => {
         this.room.push(doc.data());
       });
+      console.log('Rooms: ', this.room);
+
     });
     // get the hotel landmarks
     this.db.collection('hotel').doc('Azure Grotto Hotel').collection('landmarks').get().then(snapshot => {
@@ -88,7 +93,7 @@ ionViewDidLoad() {
       loading.dismiss();
     });
    this.getReviews();
-   
+
   }
   // viewing room
   viewRoom(room){
@@ -137,7 +142,39 @@ ionViewDidLoad() {
   }
   // logout user
   async logout(){
-      const popover = this.popoverCtrl.create(LogoutPage);
-      popover.present();
+    const loader = this.loadingCtrl.create({
+      content: 'Loading',
+      spinner: 'bubbles'
+    });
+    loader.present()
+    firebase.auth().onAuthStateChanged(user => {
+      if (user){
+        this.userProv.setUser(user);
+        this.navCtrl.push(ProfilePage);
+        loader.dismiss();
+      } else {
+        console.log('No user');
+        loader.dismiss();
+        this.alertCtrl.create({
+          title: 'Create Account.',
+          message: 'You have to be signed in to continue. Create an account?',
+          buttons: [
+            {
+              text: 'Not yet',
+              handler: data => {
+                console.log('Cancelled');
+
+              }
+            },
+            {
+              text: 'Yes',
+              handler: data => {
+                this.navCtrl.push(RegisterOwnerPage);
+              }
+            }
+          ]
+        }).present()
+      }
+    })
   }
 }

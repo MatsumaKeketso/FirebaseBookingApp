@@ -1,18 +1,4 @@
 <ion-content>
-
-  <!-- THE HEADER -->
-  <div class="h">
-      <div class="hotelname">
-        <p>Asure Grotto Hotel</p>
-      </div>
-      <div class="profile">
-        <div>
-          <div class="moree"><p>Hi Name Surname</p></div>
-        <div class="icon"><p><ion-icon name="more"></ion-icon></p></div>
-        </div>
-      </div>
-    </div>
-    <div class="space"></div>
   <!-- CONTAINS EVERYTHING -->
   <div class="contain">
     <!-- HOTEL DETAILS -->
@@ -30,10 +16,17 @@
     <!-- IMAGE OF THE HOTEL -->
     <div class="hotelimage">
       <img src="{{room.image}}" alt="">
-      <div class="reserve">
-          <button ion-button (click)="toBooking(room)">I'll Reserve</button>
+
+      <div class="price">
+        <div class="num">
+            <p> R{{room.price}}.00 pp/pn </p>
+        </div>
+        <div class="reserve">
+            <button (click)="toBooking(room)">Book now</button>
+        </div>
       </div>
     </div>
+    <p>{{room.description}}</p>
     <h2>Room features</h2>
     <div class="features">
       <div class="feat" *ngFor="let f of room.features"> {{f}}</div>

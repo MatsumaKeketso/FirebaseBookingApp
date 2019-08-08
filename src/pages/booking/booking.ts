@@ -40,12 +40,7 @@ export class BookingPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, private userProv: UserProvider, public toastCtrl: ToastController, public loadCtrl: LoadingController) {}
 
   ionViewDidLoad() {
-    console.log(this.navParams);
-    this.room = this.navParams.data;
-    this.bookingInfo.roomname = this.room.name;
-    this.bookingInfo.uid = this.userProv.getUser().uid;
-    console.log( 'The room: ', this.room);
-    this.getProfile()
+    console.log('Room data: ', this.navParams);
 
   }
   goBack() {

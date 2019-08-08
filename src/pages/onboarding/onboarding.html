@@ -1,17 +1,48 @@
 <ion-content >
   <div class="container">
-    <ion-slides pager>
+    <ion-slides #slides pager>
 
-      <ion-slide style="background-color: green">
-        <h2>Better Updates</h2>
+      <ion-slide>
+        <h2>Welcome</h2>
+        <div class="update">
+          <div class="imagee">
+            <h4>to</h4>
+            <h3>Asure Grotto Hotel</h3>
+            <!-- <img src="../../assets/icon/icon.png" alt=""> -->
+          </div>
+        </div>
+        <p>The next screens will help you familiarise yourself with the application. <i>You can skip this step.</i></p>
+        <div class="buton">
+          <button (click)="changeSlide(1)">Next</button>
+          <button class="notnow" (click)="skip()">Skip</button>
+        </div>
       </ion-slide>
 
-      <ion-slide style="background-color: blue">
-        <h2>Quick Booking</h2>
+      <ion-slide>
+        <h2>Bookings</h2>
+        <div class="update">
+          <img src="../../assets/imgs/onboarding/secure payment.jpg" alt="">
+        </div>
+        <p>Our app needs you to have an account before you can make any bookings. To view the booking you have to create a profile.</p>
+        <div class="buton">
+          <button (click)="changeSlide(2)">Next</button>
+        </div>
       </ion-slide>
 
-      <ion-slide style="background-color: red">
-        <h2>Discounts</h2>
+      <ion-slide >
+        <h2>One more thing</h2>
+        <div class="imagee">
+          <img src="../../assets/imgs/onboarding/modern-flat-of-retro-bicycle-vector-12182156.jpg" alt="">
+        </div>
+        <div class="cont">
+          <p>Get up to 20% off your booking price if you become a member.</p>
+
+        <p>Create your account now to get early specials.</p>
+        <div class="buton">
+          <button (click)="creteAccount()">Create Account</button>
+          <button class="notnow" (click)="notNow()">Not Now</button>
+        </div>
+        </div>
       </ion-slide>
 
     </ion-slides>
