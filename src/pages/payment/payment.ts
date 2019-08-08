@@ -1,5 +1,5 @@
 import { Component,  } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { ConfirmedPage } from '../confirmed/confirmed';
 @IonicPage()
@@ -22,8 +22,8 @@ roomname:null,
 surname:null,
 uid: null
   };
-  room = {
-    description: null,
+room = {
+description: null,
 features: [],
 image: null,
 lastcreated: null,
@@ -39,7 +39,8 @@ sleeps: null,
     cvv: null,
     expiration: null
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController) {
+  public loading 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController,public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -86,7 +87,12 @@ sleeps: null,
               }).present();
             } else {
               this.db.collection('bookings').doc(this.booking.roomname+this.booking.uid).collection('payment').doc(this.payment.method).set(this.payment).then(res => {
-           this.navCtrl.push(ConfirmedPage);
+                this.loading =  this.loadingCtrl.create();
+                 this.loading.present();
+                this.loading.dismiss().then(() => {
+                   this.navCtrl.setRoot(ConfirmedPage);
+                });
+               
           }).catch(err => {
             this.toast.create({
               message: 'Something went wrong',
@@ -98,5 +104,7 @@ sleeps: null,
 
         }
       }
+
+ 
   }
 }
