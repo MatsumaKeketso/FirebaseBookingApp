@@ -49,10 +49,7 @@ export class BookingPage {
   }
   createBooking() {
     if (
-      !this.bookingInfo.name ||
-      !this.bookingInfo.surname ||
-      !this.bookingInfo.email ||
-      !this.bookingInfo.phone ||
+     
       !this.bookingInfo.checkin ||
       !this.bookingInfo.checkout ||
       !this.bookingInfo.adults
