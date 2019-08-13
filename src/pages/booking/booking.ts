@@ -58,13 +58,14 @@ export class BookingPage {
         duration: 3000
       }).present();
     } else {
-      const start = new Date(this.bookingInfo.checkin);
+      let start = new Date(this.bookingInfo.checkin).valueOf();
       const end = new Date(this.bookingInfo.checkout);​​
       const days = 1000 * 60 * 60 * 24;
       const month = 1000 * 60;
       const diff = end.valueOf() - start.valueOf();
       const Verr = Math.floor(diff / days);
-      if (Verr <= 0) { // CHECK IF THE DATE IS IN THE FUTURE
+      let today= new  Date().valueOf();
+      if (Verr <= 0 || today >start) { // CHECK IF THE DATE IS IN THE FUTURE
         this.toastCtrl.create({
           message: 'Pick a future date for check out',
           duration: 3000
