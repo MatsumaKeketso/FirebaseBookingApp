@@ -34,7 +34,7 @@
           </div>
           <ion-item>
               <ion-label floating>*Expiration Date</ion-label>
-              <ion-datetime yearValues="2018,2019,2020,2021"  [(ngModel)]="payment.expiration"></ion-datetime>
+              <ion-datetime max="2025-12-31" min="2019-09-13" [(ngModel)]="payment.expiration"></ion-datetime>
             </ion-item>
   </div>
   <div class="res">

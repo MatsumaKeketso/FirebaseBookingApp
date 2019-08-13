@@ -6,7 +6,7 @@
     <button clear color="danger" ion-fab (click)="signout()" >Signout</button>
   </ion-fab>
   <div *ngIf="!isProfile">
-    <h1>Create Profile</h1>
+    <h1>Manage Profile</h1>
  <div *ngIf="profileImage" class="image">
    <div class="del" ><button fab-button clear (click)="reset()"><ion-icon clear clear name="trash"></ion-icon></button></div>
     <img  src="{{profileImage}}">
@@ -29,7 +29,7 @@
         <ion-label floating>Bio</ion-label>
         <ion-textarea [(ngModel)]="userProfile.bio"></ion-textarea>
       </ion-item>
-        <button ion-button large clear full center (click)="createUser()">Create Profile</button>
+        <button ion-button large clear full center (click)="createUser()">Creating Profile</button>
 
   </div>
   <div *ngIf="isProfile">
@@ -48,7 +48,7 @@
           <div class="line"></div>
           <div class="email"><p>{{displayProfile.email}}</p></div>
         </div>
-        
+
 
   </div>
 
@@ -64,7 +64,7 @@
         <div class="details"  >
             <p> Check-In Date: {{b.checkin | date}} </p>
             <p> Check-Out Date: {{b.checkout | date}} </p>
-            <!-- <p>You are staying with {{b.adults}} person(s) for {{b.days}} days from {{b.checkin | date}} to {{b.checkout | date}}</p> -->
+           
             <h4>Amount: R{{b.price}} pp/pn</h4>
             <button ion-fab large color="danger" (click)="presentConfirm(b) ">Cancel</button>
         </div>
