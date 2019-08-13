@@ -8,27 +8,11 @@
 
 
   <div class="slid">
-      <ion-item>
-          <ion-label floating>*Payment method</ion-label>
-          <ion-select [(ngModel)]="payment.method" multiple="false" >
-            <ion-option >Visa</ion-option>
-            <ion-option >Master Card</ion-option>
-            <ion-option >American Express</ion-option>
-            <ion-option >Diners Club</ion-option>
-            <ion-option >UnionPay credit card</ion-option>
-          </ion-select>
-        </ion-item>
             <div class="cardowner">
               <div class="left">
                 <ion-item>
-                  <ion-label floating >*Name</ion-label>
+                  <ion-label floating >*Card Holder</ion-label>
                   <ion-input type="text" [(ngModel)]="payment.name"></ion-input>
-                </ion-item>
-              </div>
-              <div class="right">
-                <ion-item>
-                  <ion-label floating >*Surname</ion-label>
-                  <ion-input type="text" [(ngModel)]="payment.surname"></ion-input>
                 </ion-item>
               </div>
             </div>
@@ -50,7 +34,7 @@
           </div>
           <ion-item>
               <ion-label floating>*Expiration Date</ion-label>
-              <ion-input type="date"  [(ngModel)]="payment.expiration"></ion-input>
+              <ion-datetime yearValues="2018,2019,2020,2021"  [(ngModel)]="payment.expiration"></ion-datetime>
             </ion-item>
   </div>
   <div class="res">

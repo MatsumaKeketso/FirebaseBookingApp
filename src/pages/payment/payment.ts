@@ -32,30 +32,26 @@ price: null,
 sleeps: null,
   };
   payment = {
-    method: '',
+    method: 'Visa',
     name: '',
-    surname: '',
     cardnumber: null,
     cvv: null,
     expiration: null
   }
-  public loading 
+  public loading
   constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController,public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentPage');
-    console.log(this.navParams);
+    console.log('Payment page: ', this.navParams);
     this.booking = this.navParams.data.booking;
     this.room = this.navParams.data.room;
-    this.payment.name = this.booking.name;
-    this.payment.surname = this.booking.surname;
   }
   confirm(){
     if (!this.payment.cardnumber ||
       !this.payment.method ||
       !this.payment.name ||
-      !this.payment.surname ||
       !this.payment.cvv ||
       !this.payment.expiration){
         this.toast.create({
@@ -92,7 +88,7 @@ sleeps: null,
                 this.loading.dismiss().then(() => {
                    this.navCtrl.setRoot(ConfirmedPage);
                 });
-               
+
           }).catch(err => {
             this.toast.create({
               message: 'Something went wrong',
@@ -105,6 +101,6 @@ sleeps: null,
         }
       }
 
- 
+
   }
 }

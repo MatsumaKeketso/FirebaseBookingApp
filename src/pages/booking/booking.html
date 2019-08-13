@@ -11,18 +11,13 @@
   <div class="personal">
 
   </div>
-  <div class="line">
-      <div class="li"></div>
-      <div class="circle"></div>
-      <div class="li"></div>
-    </div>
     <p>Your booking is almost done.</p>
     <div class="booking">
 
       <div class="left">
           <ion-item>
               <ion-label floating>Check In</ion-label>
-              <ion-input  type="date" [(ngModel)]="bookingInfo.checkin"></ion-input>
+              <ion-datetime  type="date" [(ngModel)]="bookingInfo.checkin"></ion-datetime>
             </ion-item>
             <ion-item>
               <ion-label floating >Adults</ion-label>
@@ -32,7 +27,7 @@
       <div class="right">
           <ion-item>
               <ion-label floating>Check Out</ion-label>
-              <ion-input  type="date"  [(ngModel)]="bookingInfo.checkout"></ion-input>
+              <ion-datetime   type="date"  [(ngModel)]="bookingInfo.checkout"></ion-datetime>
             </ion-item>
       </div>
     </div>

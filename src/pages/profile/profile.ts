@@ -4,12 +4,14 @@ import { Camera, CameraOptions } from "@ionic-native/camera";
 import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
 import { OwnerHomePage } from '../owner-home/owner-home';
+import { LoginOwnerPage } from '../login-owner/login-owner';
 @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  someProperty = false;
   // show the profile is it got retrieved
   isProfile = false;
   db = firebase.firestore();
@@ -39,7 +41,52 @@ export class ProfilePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
     console.log('Room: ', this.navParams.data);
-
+    this.userProfile.uid = this.userProv.getUser().uid;
+    firebase.auth().onAuthStateChanged(user => {
+      if (user){
+        this.userProfile.email = user.email;
+        this.db.collection('users').where('uid', '==', this.userProv.getUser().uid).get().then(snapshot => {
+          if (snapshot.empty == true){
+            const prompt = this.alertCtrl.create({
+              title: 'No profile',
+              message: "To view your bookings or send a review, you need to create a profile. Create profile now?",
+              buttons: [
+                {
+                  text: 'Not yet',
+                  handler: data => {
+                    this.navCtrl.setRoot(OwnerHomePage);
+                  }
+                },
+                {
+                  text: 'Yes',
+                  handler: data => {
+                    console.log('Saved clicked');
+                  }
+                }
+              ]
+            });
+            prompt.present();
+          } else {
+            this.getProfile();
+            let load = this.loadingCtrl.create({
+              content: 'Just a sec...',
+              spinner: 'bubbles'
+            });
+            load.present();
+            this.db.collection('bookings').where('uid', '==', this.userProv.getUser().uid).get().then(snapshot => {
+              snapshot.forEach(doc => {
+                this.bookings.push(doc.data())
+              })
+              console.log('Bookings: ', this.bookings);
+              this.nobookings = this.bookings.length;
+              load.dismiss()
+            }).catch(err => {
+              load.dismiss();
+            })
+          }
+          })
+        }
+      })
     // console.log('Profile user: ', this.userProv.user.uid);
     // this.userProfile.uid = this.userProv.user.uid
     // this.userProfile.email = this.userProv.getUser().email;
@@ -68,6 +115,21 @@ export class ProfilePage {
       console.log("Something went wrong: ", err);
     })
     this.imageSelected = true;
+  }
+  signout() {
+    firebase.auth().signOut().then(res => {
+      this.toastCtrl.create({
+        message: 'Logout Successful.',
+        duration: 3000
+      }).present();
+      this.navCtrl.setRoot(LoginOwnerPage);
+    }).catch( err => {
+      this.toastCtrl.create({
+        message: err,
+        duration: 3000
+      }).present();
+      //
+    })
   }
   createUser(){
     // error statement if the fields are empty
@@ -144,7 +206,8 @@ export class ProfilePage {
   getProfile(){
     // load the process
     let load = this.loadingCtrl.create({
-      content: 'Fetching your Profile...'
+      content: 'Just a sec...',
+      spinner: 'bubbles'
     });
     load.present();
     // create a reference to the collection of users...
@@ -216,6 +279,9 @@ export class ProfilePage {
   }
   goBack(){
     this.navCtrl.setRoot(OwnerHomePage);
+  }
+  onClick(){
+    this.someProperty = !this.someProperty;
   }
 
 }

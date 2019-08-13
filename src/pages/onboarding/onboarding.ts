@@ -40,8 +40,11 @@ export class OnboardingPage {
   changeSlide(val){
     this.slides.slideTo(val);
   }
+  login(){
+    this.navCtrl.setRoot(LoginOwnerPage);
+  }
   creteAccount(){
-    this.navCtrl.push(RegisterOwnerPage);
+    this.navCtrl.setRoot(RegisterOwnerPage);
   }
   notNow(){
     this.navCtrl.push(OwnerHomePage);

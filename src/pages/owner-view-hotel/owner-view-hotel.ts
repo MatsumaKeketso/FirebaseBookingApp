@@ -39,6 +39,7 @@ export class OwnerViewHotelPage {
     firebase.auth().onAuthStateChanged(user => {
       if (user){
         this.userProv.setUser(user);
+        this.navCtrl.push(BookingPage, this.room);
         loader.dismiss();
       } else {
         console.log('No user');
