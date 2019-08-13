@@ -26,7 +26,7 @@ export class BookingPage {
   bookingInfo = {
     dateBooked:null,
     uid: null, // from provider
-   
+    name: null, // from form
     checkin: null, // from form
     checkout: null, // from form
     adults: null, // from form
