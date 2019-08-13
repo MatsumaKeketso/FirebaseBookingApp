@@ -6,18 +6,24 @@ import * as firebase from 'firebase';
 import { UserProvider } from "../../providers/user/user";
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EmailValidator } from '../../validators/emails';
 @IonicPage()
 @Component({
   selector: 'page-login-owner',
   templateUrl: 'login-owner.html',
 })
 export class LoginOwnerPage {
+  loginForm: FormGroup;
   error: string;
   firebase = firebase;
   db = firebase.firestore();
   user = {} as Login;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private userProv: UserProvider, public alertCtrl: AlertController) {
-
+  constructor(public navCtrl: NavController,public formBuilder: FormBuilder, public navParams: NavParams, public loadingCtrl: LoadingController, private userProv: UserProvider, public alertCtrl: AlertController) {
+    this.loginForm = formBuilder.group({
+      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
+      password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+    });
   }
 
   ionViewDidLoad() {
@@ -40,7 +46,7 @@ export class LoginOwnerPage {
     this.navCtrl.push(RegisterOwnerPage);
   }
   async login(){
-    if (!this.user.email || !this.user.password){
+    if (!this.loginForm.valid){
       this.alertCtrl.create({
         message: 'Fields cannot be left empty.'
       }).present();

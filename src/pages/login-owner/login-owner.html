@@ -4,25 +4,35 @@
      <h1>Asure Grotto Hotel</h1>
    </div>
  </div>
+ <form action="" [formGroup] = "loginForm">
  <div class="form">
    <div>
       <div *ngIf="error">
           <p id="error">{{error}}</p>
         </div>
     <div class="inputs">
-      <input type="email" [(ngModel)]="user.email" placeholder="Email">
+      <input type="email" [(ngModel)]="user.email" formControlName="email" [class.invalid]="!loginForm.controls['email'].valid &&
+      loginForm.controls['email'].touched" placeholder="Email">
+      <ion-item no-lines style="background: transparent" class="error-message" *ngIf="!loginForm.controls['email'].valid &&
+                  loginForm.controls['email'].touched">
+                 <p style="color: red">Please enter a valid email address.</p>
+               </ion-item>
 
-      <input type="password" [(ngModel)]="user.password" placeholder="Password">
+      <input type="password" [(ngModel)]="user.password" placeholder="Password" formControlName="password"     [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
+      <ion-item no-lines style="background: transparent" class="error-message" *ngIf="!loginForm.controls['password'].valid
+                  && loginForm.controls['password'].touched">
+                  <p style="color: red">Your password needs more than 6 characters.</p>
+                </ion-item>
       </div>
       <div class="link">
         <button (click)="toRegister()">Don't have an account?</button>
       </div>
        <div class="lButton">
-         <button id="login" (click)="login()">Login</button>
+         <button id="login" (click)="login()" type="submit" [disabled]="!loginForm.valid">Login</button>
        </div>
    </div>
   </div>
-
+</form>
     <div class="text">
     </div>
 

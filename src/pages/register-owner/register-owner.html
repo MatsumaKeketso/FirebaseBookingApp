@@ -4,24 +4,46 @@
       <h1>Asure Grotto Hotel</h1>
     </div>
   </div>
+  <form [formGroup]="signupForm">
   <div class="form">
     <div>
         <div *ngIf="error">
             <p id="error">{{error}}</p>
           </div>
      <div class="inputs">
-       <input type="email" [(ngModel)]="user.email" placeholder="Email">
-       <input type="password" [(ngModel)]="user.password" placeholder="Password">
-       <input type="password" placeholder=" Repeat Password" [(ngModel)]="repPass">
+       <input type="email" [(ngModel)]="user.email" placeholder="Email" formControlName="email"
+       [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
+
+       <ion-item style="background: transparent;  border-bottom: none"  class="error-message" *ngIf="!signupForm.controls['email'].valid
+       && signupForm.controls['email'].touched">
+         <p style="color: red">Please enter a valid email.</p>
+       </ion-item>
+
+       <input type="password" [(ngModel)]="user.password" placeholder="Password" formControlName="password"
+       [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
+
+       <ion-item style="background: transparent;  border-bottom: none"  class="error-message" *ngIf="!signupForm.controls['password'].valid
+       && signupForm.controls['password'].touched">
+         <p style="color: red">Your password needs more than 6 characters.</p>
+       </ion-item>
+
+       <input type="password" placeholder=" Repeat Password" [(ngModel)]="repPass" formControlName="repPass"
+       [class.invalid]="!signupForm.controls['repPass'].valid && signupForm.controls['repPass'].touched">
+
+       <ion-item style="background: transparent;  border-bottom: none"  class="error-message" *ngIf="!signupForm.controls['repPass'].valid
+       && signupForm.controls['repPass'].touched">
+         <p style="color: red">Please confirm password.</p>
+       </ion-item>
        </div>
        <div class="link">
          <button (click)="toLogin()">Already have an account?</button>
        </div>
         <div class="lButton">
-          <button id="login" (click)="register()">Register</button>
+          <button id="login" (click)="register()" type="submit" [disabled]="!signupForm.valid">Register</button>
         </div>
     </div>
    </div>
+  </form>
 
      <div class="text">
      </div>

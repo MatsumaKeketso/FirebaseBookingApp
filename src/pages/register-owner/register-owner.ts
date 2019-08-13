@@ -8,18 +8,33 @@ import { ProfilePage } from '../profile/profile';
 import { OwnerHomePage } from '../owner-home/owner-home';
 import { BookingPage } from '../booking/booking';
 import { LoginOwnerPage } from '../login-owner/login-owner';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EmailValidator } from '../../validators/emails';
 @IonicPage()
 @Component({
   selector: 'page-register-owner',
   templateUrl: 'register-owner.html',
 })
 export class RegisterOwnerPage {
+  signupForm: FormGroup;
   db = firebase.firestore()
   error: string;
   user = {} as Register;
   repPass = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, private userProvider: UserProvider, public loadingCtrl: LoadingController) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private afAuth: AngularFireAuth, 
+    private userProvider: UserProvider, 
+    public loadingCtrl: LoadingController,
+    public formBuilder: FormBuilder,
+    ) {
+    this.signupForm = formBuilder.group({
+      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
+      password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      repPass: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+  });
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterOwnerPage');
