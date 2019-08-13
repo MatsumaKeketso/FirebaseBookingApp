@@ -34,7 +34,9 @@ export class OwnerViewHotelPage {
     const loader = this.load.create({
       content: 'Loading',
       spinner: 'bubbles'
+      
     })
+    this.navCtrl.push(BookingPage, this.room);
     loader.present()
     firebase.auth().onAuthStateChanged(user => {
       if (user){
@@ -58,7 +60,7 @@ export class OwnerViewHotelPage {
             {
               text: 'Yes',
               handler: data => {
-                this.navCtrl.push(RegisterOwnerPage, this.room);
+                this.navCtrl.push(BookingPage, this.room);
               }
             }
           ]
