@@ -24,8 +24,9 @@ export class BookingPage {
   room = {} as Room;
   // stores the form data
   bookingInfo = {
+    dateBooked:null,
     uid: null, // from provider
-    name: null, // from form
+   
     checkin: null, // from form
     checkout: null, // from form
     adults: null, // from form
@@ -80,7 +81,7 @@ export class BookingPage {
               this.bookingInfo.price = this.room.price * (this.bookingInfo.days * parseInt(this.bookingInfo.adults)); // 3
               console.log( 'tHE BOOKING INFO: ' ,this.bookingInfo);
                // EVERYTHING SHOULD BE FINE...
-
+               this.bookingInfo.dateBooked = Date();
                 this.db.collection('bookings').doc(this.bookingInfo.roomname+this.userProv.getUser().uid).set(this.bookingInfo).then(res => {
 
                   this.navCtrl.push(PaymentPage, {booking: this.bookingInfo, room: this.navParams.data});

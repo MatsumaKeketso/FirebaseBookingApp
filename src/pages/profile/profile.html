@@ -48,6 +48,7 @@
           <div class="line"></div>
           <div class="email"><p>{{displayProfile.email}}</p></div>
         </div>
+        
 
   </div>
 
@@ -61,8 +62,8 @@
             <h3>{{b.roomname}}</h3>
         </div>
         <div class="details"  >
-            <p> Check In Date: {{b.checkin | date}} </p>
-            <p> Checkout Date: {{b.checkout | date}} </p>
+            <p> Check-In Date: {{b.checkin | date}} </p>
+            <p> Check-Out Date: {{b.checkout | date}} </p>
             <!-- <p>You are staying with {{b.adults}} person(s) for {{b.days}} days from {{b.checkin | date}} to {{b.checkout | date}}</p> -->
             <h4>Amount: R{{b.price}} pp/pn</h4>
             <button ion-fab large color="danger" (click)="presentConfirm(b) ">Cancel</button>
