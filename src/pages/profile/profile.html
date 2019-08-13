@@ -1,6 +1,9 @@
 <ion-content>
-  <ion-fab top left>
-    <button ion-fab (click)="goBack()" ><ion-icon name="arrow-back"></ion-icon></button>
+  <ion-fab clear top left>
+    <button clear ion-fab (click)="goBack()" ><ion-icon clear name="arrow-back"></ion-icon></button>
+  </ion-fab>
+  <ion-fab clear top right>
+    <button clear color="danger" ion-fab (click)="signout()" >Signout</button>
   </ion-fab>
   <div *ngIf="!isProfile">
     <h1>Create Profile</h1>
@@ -17,10 +20,6 @@
     <ion-item>
       <ion-label floating>Surname</ion-label>
       <ion-input type="text" [(ngModel)]="userProfile.surname"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="email" [(ngModel)]="userProfile.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Phone Number</ion-label>
@@ -57,11 +56,11 @@
     <p>You have {{nobookings}} bookings.</p>
     <div class="reserves">
 
-      <div *ngFor="let b of bookings; let i = index" class="book">
+      <div *ngFor="let b of bookings; let i = index" class="book" >
         <div class="head">
             <h3>{{b.roomname}}</h3>
         </div>
-        <div class="details">
+        <div class="details"  >
             <p>You are staying with {{b.adults}} person(s) for {{b.days}} days from {{b.checkin | date}} to {{b.checkout | date}}</p>
             <h4>Amount: R{{b.price}} pp/pn</h4>
             <button ion-fab large color="danger" (click)="presentConfirm(b) ">Cancel</button>

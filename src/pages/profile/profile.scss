@@ -1,4 +1,10 @@
 page-profile {
+  .extraclass {
+    background: red;
+    color: white;
+    height: 15% !important;
+    transition: 0.4s;
+  }
   h1{
     text-align: center;
     margin: 10vh 0vw;
@@ -117,10 +123,12 @@ page-profile {
       }
       .book{
         width: 80%;
+        height: 100%;
         margin: 5px auto;
         box-shadow: 0px 0px 8px #17171756;
         border-radius: 8px;
         overflow: hidden;
+        transition: 0.6s;
         .head{
           color: white;
           background: #323268;
