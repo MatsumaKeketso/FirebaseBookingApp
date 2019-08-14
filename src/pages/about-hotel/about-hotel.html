@@ -1,10 +1,125 @@
+<ion-content>
+    <div class="heade">
+        <div class="butto">
+            <button (click)="back()" >Back</button>
+        </div>
+        <div class="name">
+            <div>
+                <h1>{{hotel.name}}</h1>
+                <p>{{hotel.rating}} star hotel</p>
+            </div>
+        </div>
+      </div>
+  <div class="container">
 
-<ion-header>
-  <ion-navbar>
-    <ion-title>aboutHotel</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
+    <div class="details">
+      <p>{{hotel.location}}</p>
+      <h1>About Us</h1>
+      <p>{{hotel.description}}</p>
+    </div>
+    <h1>Gallery</h1>
+    <div class="images">
+      <div class="image" *ngFor="let i of images.image">
+        <img src="{{i}}" alt="">
+      </div>
+    </div>
+    <div class="facilities">
+        <h1>Hotel's Facilities</h1>
+        <div class="activities">
+          <div class="f-card">
+              <h3>Activities</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.activities"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Business</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.business"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Cleaning</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.cleaning"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Food & Beverages</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.food"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>General</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.general"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Internet</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.internet"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Languages Spoken</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.languages"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Outdoors</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.outdoors"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Parking</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.parking"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Pets</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.pets"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Reception</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.reception"> {{f}}</p>
+              </div>
+          </div>
+          <div class="f-card">
+              <h3>Transport</h3>
+              <div class="act">
+                <p *ngFor="let f of facilities.transport"> {{f}}</p>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="attractions">
+        <div class="att-head">
+          <h1>Closest Attractions</h1>
+        </div>
+          <div class="att-list">
+            <div class="att-card" *ngFor="let a of attractions">
+              <div class="att-image">
+                <img src="{{a.image}}" alt="">
+              </div>
+              <div class="att-details">
+                <h2>{{a.name}}</h2>
+                <p>{{a.distance}} km</p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="fineprint">
+        <h1>Fine Print</h1>
+        <p>{{hotel.fineprint}}</p>
+      </div>
+  </div>
 
 </ion-content>

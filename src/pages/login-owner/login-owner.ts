@@ -58,7 +58,7 @@ export class LoginOwnerPage {
         ]
       }).present();
     } else {
-      
+
       this.firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password).then(async res => {
         const loading = await this.loadingCtrl.create({
           spinner: 'bubbles',
@@ -75,7 +75,7 @@ export class LoginOwnerPage {
             } else {
               loading.dismiss();
               this.navCtrl.setRoot(OwnerHomePage)
-              
+
             }
           })
           // this.userProv.setUser(res);
@@ -89,7 +89,7 @@ export class LoginOwnerPage {
         console.log("Error: ", err);
         this.error = err.message;
         console.log('Owner user signin error: ', err);
-        
+
       })
     }
   }

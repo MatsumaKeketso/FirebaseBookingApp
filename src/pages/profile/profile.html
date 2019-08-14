@@ -1,6 +1,6 @@
 <ion-content>
   <ion-fab *ngIf="isProfile" clear top left>
-    <button clear ion-fab (click)="goBack()" ><ion-icon clear name="arrow-back"></ion-icon></button>
+    <button clear ion-fab (click)="Back()" ><ion-icon clear name="arrow-back"></ion-icon></button>
   </ion-fab>
   <ion-fab clear top right>
     <button *ngIf="isProfile" clear color="danger" ion-fab (click)="signout()" >Signout</button>
@@ -8,7 +8,7 @@
   <div *ngIf="!isProfile">
     <h1>Manage Profile</h1>
  <div *ngIf="profileImage" class="image">
-   <div class="del" ><button fab-button clear (click)="reset()"><ion-icon clear clear name="trash"></ion-icon></button></div>
+   <div class="del" ><p>Delete</p></div>
     <img  src="{{profileImage}}">
  </div>
   <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
@@ -29,8 +29,8 @@
         <ion-label floating>Bio</ion-label>
         <ion-textarea [(ngModel)]="userProfile.bio"></ion-textarea>
       </ion-item>
-        <button ion-button large clear full center (click)="createUser()">Create Profile</button>
-
+        <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button>
+        <button *ngIf="isProfile||userProfile.bio" ion-button large clear full center type="submit" (click)="goBack()">Cancel</button>
   </div>
   <div *ngIf="isProfile">
       <div class="Profimage">
@@ -40,7 +40,11 @@
             </div>
            <div class="displayName">
 
-              <h4>{{displayProfile.name}} {{displayProfile.surname}} </h4>
+              <h4>{{displayProfile.name}} {{displayProfile.surname}}  </h4>
+              <button (click)="editProfile()" ion-button small color="dark" icon-right >
+                  Edit
+                  <ion-icon name="create"></ion-icon>
+                </button>
            </div>
         </div>
         <div class="contact">
@@ -48,11 +52,9 @@
           <div class="line"></div>
           <div class="email"><p>{{displayProfile.email}}</p></div>
         </div>
-
-
   </div>
 
-  <div *ngIf="isProfile" class="booking">
+  <div *ngIf="isProfile&&nobookings!==0" class="booking">
     <h1>Your Bookings</h1>
     <p>You have {{nobookings}} bookings.</p>
     <div class="reserves">
@@ -64,11 +66,31 @@
         <div class="details"  >
             <p> Check-In Date: {{b.checkin | date}} </p>
             <p> Check-Out Date: {{b.checkout | date}} </p>
-           
-            <h4>Amount: R{{b.price}} pp/pn</h4>
-            <button ion-fab large color="danger" (click)="presentConfirm(b) ">Cancel</button>
+
+            <p>Amount: <b>R{{b.price}}.00</b></p>
+            <button ion-button full outline color="danger" (click)="presentConfirm(b) ">Cancel</button>
         </div>
         </div>
+    </div>
+    <div class="reviews">
+      <div class="header">
+        <h3>Reviews</h3>
+      </div>
+      <div class="details">
+        <div class="rev" *ngFor="let r of reviews">
+          <h4>{{r.fullname}} says...</h4>
+          <p>"{{r.text}}."</p>
+          <p><b>{{r.date}}</b></p>
+        </div>
+
+      </div>
+      <div class="r-input">
+        <ion-item>
+          <ion-label floating >Type feedback here...</ion-label>
+          <ion-input type="text" [(ngModel)]="review.text"></ion-input>
+        </ion-item>
+        <button ion-button full (click)="createReview()" >Send Review</button>
+      </div>
     </div>
   </div>
 </ion-content>

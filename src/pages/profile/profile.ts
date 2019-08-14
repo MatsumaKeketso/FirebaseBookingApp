@@ -27,14 +27,24 @@ export class ProfilePage {
     email: null,
     phone: null,
     bio: null
-  } as UserProfile
+  }
   // store the selected image for upload
   profileImage;
   imageSelected = false;
-
+  isuploaded = false;
+  isuploading = false;
+  uploadprogress = 0;
   bookings= [];
   nobookings = 0;
   arebookings = false;
+
+  review = {
+    fullname: '',
+    text: '',
+    date: '',
+    uid: ''
+  };
+  reviews = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public camera: Camera, private userProv: UserProvider, public toastCtrl: ToastController, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
   }
 
@@ -47,7 +57,7 @@ export class ProfilePage {
         this.userProfile.email = user.email;
         this.db.collection('users').where('uid', '==', this.userProv.getUser().uid).get().then(snapshot => {
           if (snapshot.empty){
-        
+
           } else {
             this.getProfile();
             let load = this.loadingCtrl.create({
@@ -74,6 +84,7 @@ export class ProfilePage {
     // this.userProfile.email = this.userProv.getUser().email;
     // this.getProfile();
     // this.getBookings();
+    this.getReviews();
   }
   setUser(){
     this.loggedInUser = this.userProv.getUser();
@@ -92,7 +103,24 @@ export class ProfilePage {
       const image = `data:image/jpeg;base64,${res}`;
 
       this.profileImage = image;
+      const UserImage = this.storage.child(this.userProv.getUser().uid+'.jpg');
 
+    const upload = UserImage.putString(image, 'data_url');
+     upload.on('state_changed', snapshot => {
+       let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       this.uploadprogress = progress;
+       if (progress == 100){
+        this.isuploading = false;
+       }
+     }, err => {
+     }, () => {
+      upload.snapshot.ref.getDownloadURL().then(downUrl => {
+        this.userProfile.image = downUrl;
+        console.log('Image downUrl', downUrl);
+
+        this.isuploaded = true;
+      })
+     })
     }, err => {
       console.log("Something went wrong: ", err);
     })
@@ -117,73 +145,58 @@ export class ProfilePage {
     // error statement if the fields are empty
     if(!this.userProfile.name || !this.userProfile.surname || !this.userProfile.phone){
       this.toastCtrl.create({
-        message: 'Do not leave fields empty. Email is optional',
+        message: 'Not Yet! Do not leave any field empty.',
         duration: 3000
       }).present();
     }else{
      if (!this.imageSelected){
       this.toastCtrl.create({
-        message: 'Profile Image is required',
+        message: 'Not Yet!. Profile Image is required',
         duration: 3000
       }).present();
      }else {
        if (this.userProfile.phone.length < 10 || this.userProfile.phone.length > 10) {
         this.toastCtrl.create({
-          message: 'Number must be 10 digits',
+          message: 'Not Yet!. Phone number must be 10 digits',
           duration: 3000
         }).present();
        } else {
          // load the profile creation process
-    const load = this.loadingCtrl.create({
-      content: 'Creating Profile..'
-    });
-    load.present();
-    const UserImage = this.storage.child(this.userProfile.name+this.userProv.getUser().uid+'.jpg');
-
-    const upload = UserImage.putString(this.profileImage, 'data_url');
-     upload.on('state_changed', snapshot => {
-       let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-       if (progress == 100){
-        // load.dismiss();
+         const load = this.loadingCtrl.create({
+          content: 'Creating Profile..'
+        });
+        load.present();
+        const user = this.db.collection('users').doc(this.userProv.getUser().uid).set(this.userProfile);
+        // upon success...
+        user.then( () => {
+          this.toastCtrl.create({
+            message: 'User Profile added.',
+            duration: 2000
+          }).present();
+          // ...get the profile that just got created...
+          load.dismiss();
+          this.getProfile()
+          // catch any errors.
+        }).catch( err=> {
+          this.toastCtrl.create({
+            message: 'Error creating Profile.',
+            duration: 2000
+          }).present();
+          this.isProfile = false;
+          load.dismiss();
+        })
        }
-     }, err => {
-     }, () => {
-      upload.snapshot.ref.getDownloadURL().then(downUrl => {
-        this.userProfile.image = downUrl;
 
-      // add a doc profile for the currently loggged in user
+     }
+    }
+          // add a doc profile for the currently loggged in user
       // let load2 = this.loadingCtrl.create({
       //   content: 'Adding Profile'
       // })
       // load2.present();
       // set the doc's id to the user's uid
       // set the doc's fields
-        const user = this.db.collection('users').doc(this.userProv.getUser().uid).set(this.userProfile);
-      // upon success...
-      user.then( () => {
-        this.toastCtrl.create({
-          message: 'User Profile added.',
-          duration: 2000
-        }).present();
-        // ...get the profile that just got created...
-        load.dismiss();
-        this.getProfile()
-        // catch any errors.
-      }).catch( err=> {
-        this.toastCtrl.create({
-          message: 'Error creating Profile.',
-          duration: 2000
-        }).present();
-        this.isProfile = false;
-        load.dismiss();
-      })
 
-      })
-     })
-       }
-
-     }
-    }
   }
   getProfile(){
     // load the process
@@ -203,6 +216,12 @@ export class ProfilePage {
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
+          this.userProfile.bio  = doc.data().bio;
+          this.userProfile.email = doc.data().email
+          // this.profileImage.image  = doc.data().image
+          this.userProfile.name  = doc.data().name;
+          this.userProfile.phone  = doc.data().phone
+          this.userProfile.surname = doc.data().surname
         })
         this.isProfile = true;
       } else {
@@ -217,6 +236,9 @@ export class ProfilePage {
       // dismiss the loading
       load.dismiss();
     })
+  }
+  editProfile(){
+    this.isProfile = false;
   }
   getBookings(){
     this.db.collection('bookings').where('uid', '==', this.userProv.getUser().uid).get().then(snapshot => {
@@ -259,11 +281,53 @@ export class ProfilePage {
   reset(){
     this.profileImage = '';
   }
+  Back(){
+    this.navCtrl.setRoot(OwnerHomePage)
+  }
   goBack(){
-    this.navCtrl.setRoot(OwnerHomePage);
+    this.isProfile = true;
   }
   onClick(){
     this.someProperty = !this.someProperty;
+  }
+  createReview(){
+    const nowDate = new Date();
+    this.review.fullname = this.displayProfile.name+' '+this.displayProfile.surname;
+    this.review.date = nowDate.toDateString();
+    this.review.uid = this.userProv.getUser().uid;
+    if (this.review.text==''){
+      this.toastCtrl.create({
+        message: 'Cannot send empty review',
+        duration: 2000
+      }).present()
+    } else {
+    this.db.collection('reviews').doc(this.userProv.getUser().uid+nowDate.toDateString()).set(this.review).then(res => {
+      this.reviews = [];
+      this.getReviews();
+      this.toastCtrl.create({
+        message: 'Thank you.',
+        duration: 2000
+      }).present();
+    }).catch(err => {
+      this.toastCtrl.create({
+        message: 'Sorry the review could not be sent.',
+        duration: 3000
+      }).present()
+    })
+    }
+  }
+  getReviews(){
+    this.reviews = [];
+     this.db.collection('reviews').get().then(snapshot => {
+      if (snapshot.empty !== true){
+        console.log('Got Reviews')
+        snapshot.forEach(doc => {
+          this.reviews.push(doc.data());
+        });
+      } else {
+        console.log('No Reviews')
+      }
+    })
   }
 
 }

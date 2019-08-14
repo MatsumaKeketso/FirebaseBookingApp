@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 import { UserProvider } from '../../providers/user/user';
 import { RegisterOwnerPage } from '../register-owner/register-owner';
 import { ProfilePage } from '../profile/profile';
+import { AboutHotelPage } from '../about-hotel/about-hotel';
 @IonicPage()
 @Component({
   selector: 'page-owner-home',
@@ -92,7 +93,6 @@ ionViewDidLoad() {
       });
       loading.dismiss();
     });
-   this.getReviews();
 
   }
   // viewing room
@@ -101,80 +101,12 @@ ionViewDidLoad() {
     this.navCtrl.push(OwnerViewHotelPage, {room});
   }
   // create a review
-  createReview(){
-    const date = new Date();
-    this.review.date = date.toDateString();
-    console.log('User Review: ', this.review);
-    if (this.review.text){
-      this.db.collection('reviews').add(this.review).then(res => {
-        this.toast.create({
-          message: 'Review sent',
-          duration: 2000
-        }).present();
-        this.review = {
-          image: '',
-          name: '',
-          date: '',
-          text: ''
-        };
-        this.getReviews();
-      });
-    } else {
-      this.toast.create({
-        message: "Can't send empty review",
-        duration: 3000
-      }).present();
-    }
-  }
-  getReviews(){
-     // get the hotel's reviews
-     this.reviews = [];
-     this.db.collection('reviews').get().then(snapshot => {
-      if (snapshot.empty !== true){
-        console.log('Got Reviews')
-        snapshot.forEach(doc => {
-          this.reviews.push(doc.data());
-        });
-      } else {
-        console.log('No Reviews')
-      }
-    })
-  }
-  // logout user
-  async logout(){
-    const loader = this.loadingCtrl.create({
-      content: 'Loading',
-      spinner: 'bubbles'
-    });
-    loader.present()
-    firebase.auth().onAuthStateChanged(user => {
-      if (user){
-        this.userProv.setUser(user);
-        this.navCtrl.push(ProfilePage);
-        loader.dismiss();
-      } else {
-        console.log('No user');
-        loader.dismiss();
-        this.alertCtrl.create({
-          title: 'Create Account.',
-          message: 'You have to be signed in to continue. Create an account?',
-          buttons: [
-            {
-              text: 'Not yet',
-              handler: data => {
-                console.log('Cancelled');
 
-              }
-            },
-            {
-              text: 'Yes',
-              handler: data => {
-                this.navCtrl.push(RegisterOwnerPage);
-              }
-            }
-          ]
-        }).present()
-      }
-    })
+  // logout user
+  profile(){
+    this.navCtrl.push(ProfilePage);
+  }
+  toAbout(){
+    this.navCtrl.push(AboutHotelPage);
   }
 }

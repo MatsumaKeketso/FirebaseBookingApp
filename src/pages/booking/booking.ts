@@ -65,9 +65,9 @@ export class BookingPage {
       const diff = end.valueOf() - start.valueOf();
       const Verr = Math.floor(diff / days);
       let today= new  Date().valueOf();
-      if (Verr <= 0 || today >start) { // CHECK IF THE DATE IS IN THE FUTURE
+      if (Verr <= 0 || today >= start) { // CHECK IF THE DATE IS IN THE FUTURE
         this.toastCtrl.create({
-          message: 'Pick a future date for check out',
+          message: "Can't pick an expired or old dates.",
           duration: 3000
         }).present();
       } else {

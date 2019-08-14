@@ -3,6 +3,7 @@ import { NavController, LoadingController, ToastController } from 'ionic-angular
 import { LoginOwnerPage } from '../login-owner/login-owner';
 import * as firebase from 'firebase';
 import { UserProvider } from '../../providers/user/user';
+import { AboutHotelPage } from '../about-hotel/about-hotel';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,4 +17,5 @@ export class HomePage {
   asOwner(){
     this.navCtrl.push(LoginOwnerPage);
   }
+ 
 }

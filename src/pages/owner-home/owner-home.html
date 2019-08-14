@@ -1,13 +1,13 @@
 <ion-content>
 
     <div class="h">
-      <div class="hotelname">
+      <div class="hotelname" (click)="toAbout()">
         <p>{{hotel.name}}</p>
       </div>
       <div class="profile">
         <div>
           <div class="moree"><p>{{userprofile.name}} {{userprofile.surname}}</p></div>
-        <div class="icon" (click)="logout()"><p>My Profile</p></div>
+        <div class="icon" (click)="profile()"><p>My Profile</p></div>
         </div>
       </div>
     </div>
