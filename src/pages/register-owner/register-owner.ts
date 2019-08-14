@@ -60,14 +60,9 @@ export class RegisterOwnerPage {
       if (this.user.password == this.repPass){
         this.error = '';
         this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password).then(res => {
-          if (res) {
             loading.dismiss();
-            if (!this.navParams.data) {
-              this.navCtrl.push(ProfilePage);
-            } else {
-              this.navCtrl.push(BookingPage, this.navParams);
-            }
-          }
+            this.userProvider.setUser(res);
+              this.navCtrl.setRoot(ProfilePage);
         }, err => {
           loading.dismiss();
           this.error = err.message;

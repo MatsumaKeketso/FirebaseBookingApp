@@ -30,8 +30,16 @@ export class OnboardingPage {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userProv.setUser(user);
-        loading.dismiss();
-        this.navCtrl.setRoot(OwnerHomePage);
+        
+        this.db.collection('users').where('uid', '==', user.uid).get().then(snapshot => {
+          if (snapshot.empty){
+            loading.dismiss();
+            this.navCtrl.setRoot(ProfilePage)
+          } else {
+            loading.dismiss();
+            this.navCtrl.setRoot(OwnerHomePage)
+          }
+        })
       } else {
         loading.dismiss();
       }

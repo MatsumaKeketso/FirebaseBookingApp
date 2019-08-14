@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/emails';
+import { OwnerAddRoomsPage } from '../owner-add-rooms/owner-add-rooms';
 @IonicPage()
 @Component({
   selector: 'page-login-owner',
@@ -48,24 +49,34 @@ export class LoginOwnerPage {
   async login(){
     if (!this.loginForm.valid){
       this.alertCtrl.create({
-        message: 'Fields cannot be left empty.'
+        message: 'Fields cannot be left empty.',
+        buttons: [
+          {
+            text: 'Okay',
+            role: 'cancel'
+          }
+        ]
       }).present();
     } else {
-      const loading = this.loadingCtrl.create({
-      spinner: 'bubbles',
-      content: 'Please Wait..'
-    });
-    loading.present();
-      this.firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password).then(res => {
+      
+      this.firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password).then(async res => {
+        const loading = await this.loadingCtrl.create({
+          spinner: 'bubbles',
+          content: 'Please Wait..'
+        });
+        loading.present();
         if (res.user.uid){
           // send the user data to provider if they just signed in
           // CHECK IF THE USER HAS PROFILE
           this.db.collection('users').where('uid', '==', res.user.uid).get().then(snapshot => {
-            snapshot.forEach(doc => {
-              console.log(doc.data());
-
-            })
-            loading.dismiss();
+            if (snapshot.empty){
+              loading.dismiss();
+              this.navCtrl.push(ProfilePage)
+            } else {
+              loading.dismiss();
+              this.navCtrl.setRoot(OwnerHomePage)
+              
+            }
           })
           // this.userProv.setUser(res);
           // loading.dismiss();
@@ -78,7 +89,7 @@ export class LoginOwnerPage {
         console.log("Error: ", err);
         this.error = err.message;
         console.log('Owner user signin error: ', err);
-        loading.dismiss();
+        
       })
     }
   }

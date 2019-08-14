@@ -46,26 +46,8 @@ export class ProfilePage {
       if (user){
         this.userProfile.email = user.email;
         this.db.collection('users').where('uid', '==', this.userProv.getUser().uid).get().then(snapshot => {
-          if (snapshot.empty == true){
-            const prompt = this.alertCtrl.create({
-              title: 'No profile',
-              message: "To view your bookings or send a review, you need to create a profile. Create profile now?",
-              buttons: [
-                {
-                  text: 'Not yet',
-                  handler: data => {
-                    this.navCtrl.setRoot(OwnerHomePage);
-                  }
-                },
-                {
-                  text: 'Yes',
-                  handler: data => {
-                    console.log('Saved clicked');
-                  }
-                }
-              ]
-            });
-            prompt.present();
+          if (snapshot.empty){
+        
           } else {
             this.getProfile();
             let load = this.loadingCtrl.create({

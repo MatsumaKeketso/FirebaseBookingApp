@@ -1,9 +1,9 @@
 <ion-content>
-  <ion-fab clear top left>
+  <ion-fab *ngIf="isProfile" clear top left>
     <button clear ion-fab (click)="goBack()" ><ion-icon clear name="arrow-back"></ion-icon></button>
   </ion-fab>
   <ion-fab clear top right>
-    <button clear color="danger" ion-fab (click)="signout()" >Signout</button>
+    <button *ngIf="isProfile" clear color="danger" ion-fab (click)="signout()" >Signout</button>
   </ion-fab>
   <div *ngIf="!isProfile">
     <h1>Manage Profile</h1>
@@ -29,7 +29,7 @@
         <ion-label floating>Bio</ion-label>
         <ion-textarea [(ngModel)]="userProfile.bio"></ion-textarea>
       </ion-item>
-        <button ion-button large clear full center (click)="createUser()">Creating Profile</button>
+        <button ion-button large clear full center (click)="createUser()">Create Profile</button>
 
   </div>
   <div *ngIf="isProfile">
