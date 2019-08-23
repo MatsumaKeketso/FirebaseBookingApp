@@ -19,8 +19,10 @@
             <div class="carddetails">
               <div class="left">
                 <ion-item>
-                  <ion-label floating>*Card Number</ion-label>
-                  <ion-input type="tel" [(ngModel)]="payment.cardnumber"></ion-input>
+                  <ion-label *ngIf="!cardtype" floating>*Card Number</ion-label>
+                  <ion-label *ngIf="cardtype" floating><i>({{cardtype}})</i></ion-label>
+                  <ion-input type="tel" [(ngModel)]="payment.cardnumber" (change)="checkcard($event.target.value)"></ion-input>
+                  <p>Paying with:...</p>
                 </ion-item>
 
 
@@ -34,12 +36,12 @@
           </div>
           <ion-item>
               <ion-label floating>*Expiration Date</ion-label>
-              <ion-datetime max="2025-12-31" min="2019-09-13" [(ngModel)]="payment.expiration"></ion-datetime>
+              <ion-datetime max="2025-12-31" min="2019-09-13" displayFormat="MM/YYYY" [(ngModel)]="payment.expiration"></ion-datetime>
             </ion-item>
   </div>
   <div class="res">
     <div>
-        <button (click)="confirm()">Reserve</button>
+        <button (click)="confirm()" [disabled]="!canpay">Reserve</button>
       <div class="print">
           <h2>Fine Print</h2>
         <div class="details">

@@ -54,7 +54,7 @@
         </div>
   </div>
 
-  <div *ngIf="isProfile&&nobookings!==0" class="booking">
+  <div *ngIf="isProfile"  class="booking">
     <h1>Your Bookings</h1>
     <p>You have {{nobookings}} bookings.</p>
     <div class="reserves">
@@ -72,7 +72,7 @@
         </div>
         </div>
     </div>
-    <div class="reviews">
+    <div class="reviews" *ngIf="isProfile&&nobookings!==0">
       <div class="header">
         <h3>Reviews</h3>
       </div>

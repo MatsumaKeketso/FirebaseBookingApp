@@ -38,7 +38,9 @@ sleeps: null,
     cvv: null,
     expiration: null
   }
-  public loading
+  public loading;
+  cardtype = ''
+  canpay = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController,public loadingCtrl: LoadingController) {
   }
 
@@ -47,6 +49,26 @@ sleeps: null,
     console.log('Payment page: ', this.navParams);
     this.booking = this.navParams.data.booking;
     this.room = this.navParams.data.room;
+  }
+  checkcard(number){
+    console.log(number);
+    const cardcompany = number.split('');
+    if (cardcompany[0] == 3 && cardcompany.length == 15){
+      this.cardtype = 'American Express';
+      this.canpay = true;
+    } else if (cardcompany[0] == 4 && cardcompany.length == 16){
+      this.cardtype = 'Visa';
+      this.canpay = true;
+    } else if (cardcompany[0] == 5 && cardcompany.length == 16){
+      this.cardtype = 'Master card';
+      this.canpay = true;
+    } else if (cardcompany[0] == 6 && cardcompany.length == 16){
+      this.cardtype = 'Discover';
+      this.canpay = true;
+    } else {
+      this.cardtype = "Card invalid.";
+      this.canpay = false;
+    }
   }
   confirm(){
     if (!this.payment.cardnumber ||
@@ -70,7 +92,7 @@ sleeps: null,
             duration: 3000
           }).present();
         } else{
-          if (this.payment.cardnumber.length < 13 || this.payment.cardnumber.length > 13) {
+          if (this.payment.cardnumber.length < 16 || this.payment.cardnumber.length > 16) {
             this.toast.create({
               message: 'Card number invalid. Digits are more or less than 13.',
               duration: 3000
